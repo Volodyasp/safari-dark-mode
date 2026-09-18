@@ -13,14 +13,48 @@ const { test: base, expect, storageSet, storageClear } = require('./extension');
 async function installRecorder(context) {
   await context.addInitScript(() => {
     window.__bdmProbe = { fallbackAtFirstScript: null, modeLog: [] };
-    // Guard: addInitScript also runs against the browser's transient
-    // placeholder document for a new frame (before any real navigation
-    // commits), which can have no <html> element yet.
-    if (document.documentElement) {
-      const observer = new MutationObserver(() => {
-        window.__bdmProbe.modeLog.push(document.documentElement.getAttribute('data-darkreader-mode'));
+
+    // Extension content scripts run in an isolated JS world: they share the
+    // DOM with this (main-world) addInitScript, but not JS objects or
+    // prototypes, so patching Element.prototype here would never see their
+    // setAttribute calls. MutationObserver operates on the shared DOM
+    // itself, so it works across worlds — but its callback is a microtask
+    // batch, so when the engine enables then immediately reverses itself
+    // within one synchronous tick (AC-15's positive-detection case), both
+    // mutations arrive in a single callback invocation. Reconstruct the
+    // value produced by each individual mutation from `attributeOldValue`
+    // instead of just sampling the end state.
+    function attachAttributeObserver() {
+      const observer = new MutationObserver((records) => {
+        records.forEach((record, i) => {
+          const isLast = i === records.length - 1;
+          const valueAfterThisMutation = isLast
+            ? document.documentElement.getAttribute('data-darkreader-mode')
+            : records[i + 1].oldValue;
+          window.__bdmProbe.modeLog.push(valueAfterThisMutation);
+        });
       });
-      observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-darkreader-mode'] });
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-darkreader-mode'],
+        attributeOldValue: true
+      });
+    }
+
+    // addInitScript runs before the HTML parser has created <html>, so
+    // document.documentElement is null at this point for a real navigation
+    // (confirmed empirically) — wait for it via a MutationObserver on
+    // `document` itself, which always exists, instead of skipping setup.
+    if (document.documentElement) {
+      attachAttributeObserver();
+    } else {
+      const rootObserver = new MutationObserver(() => {
+        if (document.documentElement) {
+          rootObserver.disconnect();
+          attachAttributeObserver();
+        }
+      });
+      rootObserver.observe(document, { childList: true });
     }
   });
 }
@@ -80,4 +114,11 @@ async function isThemed(pageOrFrame) {
   return pageOrFrame.evaluate(() => document.documentElement.getAttribute('data-darkreader-mode') === 'dynamic');
 }
 
-module.exports = { test, expect, storageSet, storageClear, darkreaderNodeCount, readHint, bodyLightness, isThemed };
+// The recorder's log of every `data-darkreader-mode` value seen since the
+// current document started (AC-15: a repeat load of a detected-dark page
+// must never show `'dynamic'` in this log — the engine never ran).
+async function modeLog(page) {
+  return page.evaluate(() => window.__bdmProbe?.modeLog ?? []);
+}
+
+module.exports = { test, expect, storageSet, storageClear, darkreaderNodeCount, readHint, bodyLightness, isThemed, modeLog };

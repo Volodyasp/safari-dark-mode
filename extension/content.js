@@ -1,8 +1,5 @@
-// content.js v1 (B2): settings-aware lifecycle, live updates, flash
-// prevention (SPECS §6.2 steps 0-9, minus the detector). B3 adds detection —
-// see the "// B3: detection" seam in rerun() below, which currently always
-// enables on any `wantDark` regardless of `ignoreDark` or a prior 'skip'
-// hint (steps 4/5/6 collapse into one branch until B3 exists).
+// content.js v2 (B3): full lifecycle incl. built-in dark theme detection
+// (SPECS §6.2 steps 0-9, all of them now).
 try {
   const FIXES = {}; // single module-level constant (AN §step 7 / mistake-proofing)
 
@@ -12,7 +9,7 @@ try {
     'html, body { opacity:1 !important; transition:none !important; }';
 
   let applied = false;
-  let detectedDark = false; // B3 sets this from the detector; always false in v1 (SPECS §4.2)
+  let detectedDark = false; // set only by detector callbacks; reset on OS-scheme change
   let fallbackNode = null;
   let osDark = matchMedia('(prefers-color-scheme: dark)').matches;
   let topHost = '';
@@ -85,13 +82,17 @@ try {
     removeFallbackNode();
   }
 
-  // Steps 2-6 (settings resolution + engine transition). Called on initial
-  // load, on storage.onChanged, and after an OS color-scheme change.
-  // Overlapping runs (onChanged while a previous loadStore() is pending)
-  // must not commit stale decisions: only the latest run may transition.
+  // Steps 2-6 (settings resolution + engine/detector transition). Called on
+  // initial load, on storage.onChanged, and after an OS color-scheme change.
+  // Overlapping runs (onChanged while a previous loadStore() — or a
+  // previous run's detector callback — is still pending) must not commit
+  // stale decisions: only the latest run (matching `runSeq`) may transition
+  // state, checked both after `loadStore()` and inside every detector
+  // callback below.
   let runSeq = 0;
   async function rerun() {
     const mySeq = ++runSeq;
+    BDM_DETECTOR.stopDarkThemeDetector(); // never let two detector runs overlap
     try {
       topHost = BDM_SETTINGS.topHostOf(window);
       store = await BDM_SETTINGS.loadStore();
@@ -99,17 +100,53 @@ try {
       const r = BDM_SETTINGS.resolve(topHost, store, osDark);
 
       if (!r.wantDark) {
+        // Step 3.
         disableTheme();
         writeHint('skip');
         return;
       }
 
-      // B3: detection — steps 5/6 split here (detect-before-enable when
-      // hint === 'skip', detect-after-enable otherwise, and `ignoreDark`
-      // skips detection entirely). v1 has no detector.js yet, so any
-      // `wantDark` enables unconditionally.
+      if (r.ignoreDark) {
+        // Step 4: enable unconditionally, skip detection entirely, leave
+        // `detectedDark` untouched (the banner condition already excludes
+        // ignoreDark, per SPECS §6.2 step 6 / mistake-proofing).
+        enableTheme();
+        writeHint('dark');
+        return;
+      }
+
+      if (readHint() === 'skip') {
+        // Step 6: the hint says this site was built-in-dark last time —
+        // detect BEFORE enabling, so a still-dark site is never
+        // double-themed (engine is never invoked when detection is
+        // positive).
+        BDM_DETECTOR.runDarkThemeDetector((hasDark) => {
+          if (mySeq !== runSeq) return; // superseded run: never transition state
+          if (hasDark) {
+            detectedDark = true; // stay off; hint is already 'skip'
+          } else {
+            detectedDark = false;
+            enableTheme();
+            writeHint('dark');
+          }
+        });
+        return;
+      }
+
+      // Step 5: enable first (Dark Reader model), then detect; a positive
+      // detection reverses the decision.
       enableTheme();
-      writeHint('dark');
+      BDM_DETECTOR.runDarkThemeDetector((hasDark) => {
+        if (mySeq !== runSeq) return;
+        if (hasDark) {
+          disableTheme(); // gated by `applied`; also drops the (now engine-removed) fallbackNode ref
+          detectedDark = true;
+          writeHint('skip');
+        } else {
+          detectedDark = false;
+          writeHint('dark');
+        }
+      });
     } catch (err) {
       console.warn('[bdm]', err);
     }
@@ -132,6 +169,7 @@ try {
 
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
     osDark = e.matches;
+    BDM_DETECTOR.stopDarkThemeDetector();
     detectedDark = false;
     setTimeout(rerun, 50);
   });
