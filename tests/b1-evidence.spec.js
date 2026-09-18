@@ -13,12 +13,15 @@ test.beforeAll(() => {
 });
 
 test('capture light.html themed screenshot', async ({ page }) => {
+  // B2 made content.js settings-aware; establish wantDark explicitly.
+  await page.emulateMedia({ colorScheme: 'dark' });
   await page.goto('http://127.0.0.1:4180/light.html');
   await page.waitForSelector('html[data-darkreader-mode="dynamic"]');
   await page.screenshot({ path: path.join(EVIDENCE_DIR, 'light-themed.png') });
 });
 
 test('capture cors.html screenshot', async ({ page }) => {
+  await page.emulateMedia({ colorScheme: 'dark' });
   await page.goto('http://127.0.0.1:4180/cors.html');
   await page.waitForSelector('html[data-darkreader-mode="dynamic"]');
   await page.screenshot({ path: path.join(EVIDENCE_DIR, 'cors.png') });

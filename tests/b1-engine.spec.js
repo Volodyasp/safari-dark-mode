@@ -26,6 +26,11 @@ test.describe('AC-1 extension skeleton', () => {
 
 test.describe('AC-2 same-origin theming', () => {
   test('light.html is themed dark', async ({ page }) => {
+    // B2 made content.js settings-aware (Enabled=Auto by default); establish
+    // wantDark explicitly since headless Chromium defaults to light (AN
+    // §Testing strategy / mistake-proofing, applies retroactively to B1's
+    // own specs once content.js v1 landed).
+    await page.emulateMedia({ colorScheme: 'dark' });
     await page.goto('http://127.0.0.1:4180/light.html');
     await expect(page.locator('html')).toHaveAttribute('data-darkreader-mode', 'dynamic', { timeout: 2000 });
 
@@ -39,6 +44,7 @@ test.describe('AC-3 cross-origin CSS bridge', () => {
     const consoleMessages = [];
     page.on('console', (msg) => consoleMessages.push(msg.text()));
 
+    await page.emulateMedia({ colorScheme: 'dark' });
     await page.goto('http://127.0.0.1:4180/cors.html');
     await expect(page.locator('html')).toHaveAttribute('data-darkreader-mode', 'dynamic', { timeout: 2000 });
 
@@ -67,6 +73,7 @@ test.describe('AC-4 background fetch bridge boundary', () => {
 
   test('other pages keep working after a rejected fetch', async ({ page, sw }) => {
     await sw.evaluate(() => fetchAsDataUrl('file:///etc/hosts'));
+    await page.emulateMedia({ colorScheme: 'dark' });
     await page.goto('http://127.0.0.1:4180/light.html');
     await expect(page.locator('html')).toHaveAttribute('data-darkreader-mode', 'dynamic', { timeout: 2000 });
   });

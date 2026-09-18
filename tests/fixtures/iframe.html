@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>iframe fixture</title>
+    <style>
+      body { background: #ffffff; color: #000000; margin: 0; }
+      iframe { display: block; width: 300px; height: 150px; border: 0; }
+    </style>
+  </head>
+  <body>
+    <p>Top page embedding light.html twice.</p>
+    <iframe id="same" src="/light.html"></iframe>
+    <iframe id="cross" src="http://localhost:4181/light.html"></iframe>
+  </body>
+</html>
