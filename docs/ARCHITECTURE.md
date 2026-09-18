@@ -10,6 +10,9 @@ extension/detector.js        built-in-dark-theme detector (Dark Reader port, MIT
 extension/content.js         per-frame lifecycle (owns tab state)
 extension/popup/*            popup.html/js/css (site + defaults settings)
 extension/vendor/*           vendored darkreader.js + LICENSE (generated, git-ignored)
+scripts/                     vendor.js, icons.js (pretest); safari-convert.sh, safari-build.sh
+tests/                       Playwright e2e: helpers/ (harness, probes), fixtures/, b1..b4 specs
+safari/                      converter-generated Xcode project (references extension/ live)
 ```
 Content-script load order (fixed, one array in the manifest): `lib/api.js` →
 `vendor/darkreader.js` → `lib/settings.js` → `detector.js` → `content.js`.

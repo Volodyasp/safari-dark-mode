@@ -110,48 +110,49 @@
     return finalLightness < 0.5;
   }
 
-  function runCheck(callback) {
+  // Pure decision: meta color-scheme, dark class/data-theme, else measure with
+  // our own sheets disabled (re-enabled in `finally`).
+  function decideDarkTheme() {
+    const colorSchemeMeta = document.querySelector(COLOR_SCHEME_META_SELECTOR);
+    if (colorSchemeMeta) {
+      const content = colorSchemeMeta.content.toLowerCase();
+      if (content === 'dark' || content === 'only dark') return true;
+      if (content === 'light' || content === 'only light') return false;
+    }
+
+    if (
+      document.documentElement.classList.contains('dark') ||
+      document.body?.classList.contains('dark') ||
+      document.documentElement.dataset.theme?.toLowerCase() === 'dark'
+    ) {
+      return true;
+    }
+
+    const drSheets = Array.from(document.styleSheets)
+      .filter((s) => s.ownerNode?.classList?.contains('darkreader'))
+      .concat(
+        Array.isArray(document.adoptedStyleSheets)
+          ? Array.from(document.adoptedStyleSheets).filter((s) => s.cssRules?.[0]?.selectorText?.startsWith('#__darkreader'))
+          : []
+      );
+    drSheets.forEach((sheet) => (sheet.disabled = true));
     try {
-      const colorSchemeMeta = document.querySelector(COLOR_SCHEME_META_SELECTOR);
-      if (colorSchemeMeta) {
-        const content = colorSchemeMeta.content.toLowerCase();
-        const isStrictlyDark = content === 'dark' || content === 'only dark';
-        const isStrictlyLight = content === 'light' || content === 'only light';
-        if (isStrictlyDark || isStrictlyLight) {
-          callback(isStrictlyDark);
-          return;
-        }
-      }
+      return hasBuiltInDarkTheme();
+    } finally {
+      drSheets.forEach((sheet) => (sheet.disabled = false));
+    }
+  }
 
-      if (
-        document.documentElement.classList.contains('dark') ||
-        document.body?.classList.contains('dark') ||
-        document.documentElement.dataset.theme?.toLowerCase() === 'dark'
-      ) {
-        callback(true);
-        return;
-      }
-
-      const drSheets = Array.from(document.styleSheets)
-        .filter((s) => s.ownerNode?.classList?.contains('darkreader'))
-        .concat(
-          Array.isArray(document.adoptedStyleSheets)
-            ? Array.from(document.adoptedStyleSheets).filter((s) => s.cssRules?.[0]?.selectorText?.startsWith('#__darkreader'))
-            : []
-        );
-      drSheets.forEach((sheet) => (sheet.disabled = true));
-
-      let darkThemeDetected;
-      try {
-        darkThemeDetected = hasBuiltInDarkTheme();
-      } finally {
-        drSheets.forEach((sheet) => (sheet.disabled = false));
-      }
-      callback(darkThemeDetected);
+  // The callback runs outside the try so a throwing callback is never
+  // reported a second time as `callback(false)`.
+  function runCheck(callback) {
+    let result = false;
+    try {
+      result = decideDarkTheme();
     } catch (err) {
       console.warn('[bdm]', err);
-      callback(false);
     }
+    callback(result);
   }
 
   function hasSomeStyle() {

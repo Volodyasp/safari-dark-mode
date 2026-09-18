@@ -85,11 +85,11 @@
   }
 
   async function saveDefaults(defaults) {
-    await globalThis.__bdm.api.storage.local.set({ defaults });
+    await globalThis.__bdm.api.storage.local.set({ v: 1, defaults });
   }
 
   async function saveSites(sites) {
-    await globalThis.__bdm.api.storage.local.set({ sites });
+    await globalThis.__bdm.api.storage.local.set({ v: 1, sites });
   }
 
   // Pure copy of `sites` with `sites[host][field]` set to `value`, or deleted when

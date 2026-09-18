@@ -113,6 +113,8 @@ test.describe('AC-12b popup status reports detectedDark (banner visibility)', ()
     await expect.poll(() => readHint(page), { timeout: 5000 }).toBe('skip');
 
     const tabId = await getTabId(sw, page.url());
+    const status = await sw.evaluate((id) => chrome.tabs.sendMessage(id, { type: 'bdm:status' }, { frameId: 0 }), tabId);
+    expect(status.detectedDark).toBe(true);
     const popup = await openPopup(context, extensionId, tabId);
     await expect(popup.locator('#banner')).toBeVisible();
     await popup.close();
@@ -124,6 +126,8 @@ test.describe('AC-12b popup status reports detectedDark (banner visibility)', ()
     await page.waitForFunction(() => document.documentElement.getAttribute('data-darkreader-mode') === 'dynamic');
 
     const tabId = await getTabId(sw, page.url());
+    const status = await sw.evaluate((id) => chrome.tabs.sendMessage(id, { type: 'bdm:status' }, { frameId: 0 }), tabId);
+    expect(status.detectedDark).toBe(false);
     const popup = await openPopup(context, extensionId, tabId);
     await expect(popup.locator('#banner')).toBeHidden();
     await popup.close();
