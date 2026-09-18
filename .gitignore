@@ -1,0 +1,29 @@
+# dependencies
+node_modules/
+
+# generated from npm (npm run vendor)
+extension/vendor/
+extension/icons/
+
+# Rosetta temp / knowledge-only sources
+agents/TEMP/
+refsrc/*
+!refsrc/INDEX.md
+plans/mvp/
+
+# Xcode / Safari wrapper
+safari/**/build/
+safari/**/xcuserdata/
+safari/**/*.xcuserstate
+DerivedData/
+
+# tests
+test-results/
+playwright-report/
+tests/.profile/
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/
+*.log

@@ -1,0 +1,16 @@
+{
+  "name": "browser-dark-mode",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "vendor": "node scripts/vendor.js",
+    "icons": "node scripts/icons.js",
+    "setup": "playwright install chromium",
+    "pretest": "npm run vendor && npm run icons",
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "darkreader": "4.9.132"
+  }
+}
