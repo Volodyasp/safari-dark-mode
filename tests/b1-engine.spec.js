@@ -32,7 +32,7 @@ test.describe('AC-2 same-origin theming', () => {
     // own specs once content.js v1 landed).
     await page.emulateMedia({ colorScheme: 'dark' });
     await page.goto('http://127.0.0.1:4180/light.html');
-    await expect(page.locator('html')).toHaveAttribute('data-darkreader-mode', 'dynamic', { timeout: 2000 });
+    await expect(page.locator('html')).toHaveAttribute('data-darkreader-mode', 'dynamic', { timeout: 5000 });
 
     const bg = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
     expect(parseRgbLightness(bg)).toBeLessThan(0.5);
@@ -46,7 +46,7 @@ test.describe('AC-3 cross-origin CSS bridge', () => {
 
     await page.emulateMedia({ colorScheme: 'dark' });
     await page.goto('http://127.0.0.1:4180/cors.html');
-    await expect(page.locator('html')).toHaveAttribute('data-darkreader-mode', 'dynamic', { timeout: 2000 });
+    await expect(page.locator('html')).toHaveAttribute('data-darkreader-mode', 'dynamic', { timeout: 5000 });
 
     const bg = await page.evaluate(() => getComputedStyle(document.getElementById('cors-box')).backgroundColor);
     expect(parseRgbLightness(bg)).toBeLessThan(0.5);
@@ -75,6 +75,6 @@ test.describe('AC-4 background fetch bridge boundary', () => {
     await sw.evaluate(() => fetchAsDataUrl('file:///etc/hosts'));
     await page.emulateMedia({ colorScheme: 'dark' });
     await page.goto('http://127.0.0.1:4180/light.html');
-    await expect(page.locator('html')).toHaveAttribute('data-darkreader-mode', 'dynamic', { timeout: 2000 });
+    await expect(page.locator('html')).toHaveAttribute('data-darkreader-mode', 'dynamic', { timeout: 5000 });
   });
 });

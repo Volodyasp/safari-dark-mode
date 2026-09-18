@@ -1,9 +1,62 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
     <title>Browser Dark Mode</title>
+    <link rel="stylesheet" href="popup.css">
   </head>
   <body>
-    Popup arrives in B4
+    <h1 id="title">Browser Dark Mode</h1>
+
+    <section id="site-section">
+      <h2>Website Settings</h2>
+      <div id="host"></div>
+
+      <div id="banner" hidden>
+        <p>This page was not darkened: it has a built-in dark mode.</p>
+        <button id="ignore-detected" type="button">Ignore Detected Dark Mode</button>
+      </div>
+
+      <label for="site-enabled">Enabled</label>
+      <select id="site-enabled">
+        <option value="default">Default (Auto)</option>
+        <option value="auto">Auto</option>
+        <option value="on">On</option>
+        <option value="off">Off</option>
+      </select>
+      <p class="hint">Auto follows your system appearance.</p>
+
+      <h2>Built-In Dark Mode</h2>
+      <label for="site-ignore">Ignore Dark Mode</label>
+      <select id="site-ignore">
+        <option value="default">Default (Off)</option>
+        <option value="on">On</option>
+        <option value="off">Off</option>
+      </select>
+      <p class="hint">On: darken even if the site already has a dark theme.</p>
+    </section>
+
+    <div id="unavailable" hidden>Not available on this page.</div>
+
+    <section id="defaults-section">
+      <h2>Default Settings</h2>
+
+      <label for="default-enabled">Enabled</label>
+      <select id="default-enabled">
+        <option value="auto">Auto</option>
+        <option value="on">On</option>
+        <option value="off">Off</option>
+      </select>
+
+      <label for="default-ignore">Ignore Built-In Dark Mode</label>
+      <select id="default-ignore">
+        <option value="on">On</option>
+        <option value="off">Off</option>
+      </select>
+    </section>
+
+    <script src="../lib/api.js"></script>
+    <script src="../lib/settings.js"></script>
+    <script src="popup.js"></script>
   </body>
 </html>
