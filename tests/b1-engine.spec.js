@@ -48,8 +48,17 @@ test.describe('AC-3 cross-origin CSS bridge', () => {
     await page.goto('http://127.0.0.1:4180/cors.html');
     await expect(page.locator('html')).toHaveAttribute('data-darkreader-mode', 'dynamic', { timeout: 5000 });
 
-    const bg = await page.evaluate(() => getComputedStyle(document.getElementById('cors-box')).backgroundColor);
-    expect(parseRgbLightness(bg)).toBeLessThan(0.5);
+    // The cross-origin sheet is fetched through the bridge asynchronously,
+    // after the engine has already set data-darkreader-mode — poll for it.
+    await expect
+      .poll(
+        async () =>
+          parseRgbLightness(
+            await page.evaluate(() => getComputedStyle(document.getElementById('cors-box')).backgroundColor)
+          ),
+        { timeout: 5000 }
+      )
+      .toBeLessThan(0.5);
 
     const corsErrors = consoleMessages.filter((text) => text.includes('Embedded Dark Reader cannot access'));
     expect(corsErrors).toEqual([]);
