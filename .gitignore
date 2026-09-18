@@ -9,7 +9,7 @@ extension/icons/
 agents/TEMP/
 refsrc/*
 !refsrc/INDEX.md
-plans/mvp/
+plans/
 
 # Xcode / Safari wrapper
 safari/**/build/
