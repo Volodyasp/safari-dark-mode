@@ -1,7 +1,60 @@
 // content.js v2 (B3): full lifecycle incl. built-in dark theme detection
 // (SPECS §6.2 steps 0-9, all of them now).
 try {
-  const FIXES = {}; // single module-level constant (AN §step 7 / mistake-proofing)
+  // FIXES is a single module-level constant (AN §step 7 / mistake-proofing):
+  // the engine's diff-vs-recreate check (node_modules/darkreader/
+  // darkreader.js L8837 `if (prevTheme && prevFixes)`, L8854
+  // `JSON.stringify(fixes) !== JSON.stringify(prevFixes)`) only takes the
+  // fast path when the fixes content is unchanged between calls, but we
+  // keep the exact same object reference too (never reassigned once set)
+  // so there is no risk of an incidental key-order difference between two
+  // independently-built objects ever being mistaken for a real change.
+  // `null` until the site-config lookup resolves (B6b); set exactly once,
+  // by `rerun()`, before the first `enableTheme()` call.
+  let FIXES = null;
+  let siteConfigHints = [];
+
+  // Resolves to `fallbackValue` (and warns once) if `promise` doesn't
+  // settle within `ms`, or if it rejects — whichever happens first, exactly
+  // once (SPECS-11 §7 error handling).
+  function withTimeout(promise, ms, fallbackValue) {
+    return new Promise((resolve) => {
+      let settled = false;
+      const timer = setTimeout(() => {
+        if (!settled) {
+          settled = true;
+          console.warn('[bdm] site-config unavailable');
+          resolve(fallbackValue);
+        }
+      }, ms);
+      promise.then(
+        (value) => {
+          if (!settled) {
+            settled = true;
+            clearTimeout(timer);
+            resolve(value);
+          }
+        },
+        () => {
+          if (!settled) {
+            settled = true;
+            clearTimeout(timer);
+            console.warn('[bdm] site-config unavailable');
+            resolve(fallbackValue);
+          }
+        }
+      );
+    });
+  }
+
+  // Fired once per document, in parallel with the synchronous document_start
+  // work below (never delays the fallback injection). `rerun()` awaits this
+  // same promise every time it runs — cheap after the first resolution.
+  const siteConfigPromise = withTimeout(
+    __bdm.sendMessage({ type: 'bdm:site-config', url: location.href }),
+    500,
+    { fix: null, hints: [] }
+  );
 
   // Fallback CSS text verbatim per B2.md step 2 / AN §step 1.
   const FALLBACK_CSS =
@@ -95,8 +148,14 @@ try {
     BDM_DETECTOR.stopDarkThemeDetector(); // never let two detector runs overlap
     try {
       topHost = BDM_SETTINGS.topHostOf(window);
-      store = await BDM_SETTINGS.loadStore();
+      const [freshStore, siteConfig] = await Promise.all([BDM_SETTINGS.loadStore(), siteConfigPromise]);
       if (mySeq !== runSeq) return;
+      store = freshStore;
+      if (FIXES === null) {
+        // Computed exactly once per document, before the first enable().
+        FIXES = siteConfig.fix ? { ...siteConfig.fix } : {};
+      }
+      siteConfigHints = siteConfig.hints ?? [];
       const r = BDM_SETTINGS.resolve(topHost, store, osDark);
 
       if (!r.wantDark) {
@@ -129,7 +188,7 @@ try {
             enableTheme();
             writeHint('dark');
           }
-        });
+        }, siteConfigHints);
         return;
       }
 
@@ -146,7 +205,7 @@ try {
           detectedDark = false;
           writeHint('dark');
         }
-      });
+      }, siteConfigHints);
     } catch (err) {
       console.warn('[bdm]', err);
     }

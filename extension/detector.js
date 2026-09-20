@@ -6,7 +6,11 @@
 // built-in dark theme detector:
 // https://github.com/darkreader/darkreader/blob/3df6a4aacb7285859003eb1af3182e4370280b5e/src/inject/detector.ts
 // commit 3df6a4aacb7285859003eb1af3182e4370280b5e
-// modified: hints removed, helpers inlined
+// modified: `hints` re-added (B6b, upstream L150-260: the hint branch of
+// runDarkThemeDetector, detectUsingHint, stopDetectingUsingHint) with the
+// same names/semantics; `isSystemDarkModeEnabled` (upstream utils/media-
+// query.ts) inlined as a direct matchMedia check since it is a one-line
+// fallback there too when no cached MediaQueryList exists; helpers inlined
 (function () {
   const COLOR_SCHEME_META_SELECTOR = 'meta[name="color-scheme"]';
 
@@ -193,8 +197,92 @@
     return false;
   }
 
-  function runDarkThemeDetector(callback) {
+  // Upstream inject/detector.ts L209-260, verbatim (hint-driven detection:
+  // wait for `hint.target` to exist, then for it to match `hint.match`).
+  let hintTargetObserver = null;
+  let hintMatchObserver = null;
+
+  function detectUsingHint(hint, success) {
+    stopDetectingUsingHint();
+
+    const matchSelector = (hint.match || []).join(', ');
+
+    function checkMatch(target) {
+      if (target.matches?.(matchSelector)) {
+        stopDetectingUsingHint();
+        success();
+        return true;
+      }
+      return false;
+    }
+
+    function setupMatchObserver(target) {
+      hintMatchObserver?.disconnect();
+      if (checkMatch(target)) {
+        return;
+      }
+      hintMatchObserver = new MutationObserver(() => checkMatch(target));
+      hintMatchObserver.observe(target, { attributes: true });
+    }
+
+    const target = document.querySelector(hint.target);
+    if (target) {
+      setupMatchObserver(target);
+    } else {
+      hintTargetObserver = new MutationObserver((mutations) => {
+        const handledTargets = new Set();
+        for (const mutation of mutations) {
+          if (handledTargets.has(mutation.target)) {
+            continue;
+          }
+          handledTargets.add(mutation.target);
+          if (mutation.target instanceof Element) {
+            const matchedTarget = mutation.target.querySelector(hint.target);
+            if (matchedTarget) {
+              hintTargetObserver.disconnect();
+              setupMatchObserver(matchedTarget);
+              break;
+            }
+          }
+        }
+      });
+      hintTargetObserver.observe(document.documentElement, { childList: true, subtree: true });
+    }
+  }
+
+  function stopDetectingUsingHint() {
+    hintTargetObserver?.disconnect();
+    hintMatchObserver?.disconnect();
+  }
+
+  // With hints (upstream L153-167): `noDarkTheme` short-circuits to false;
+  // `systemTheme` + OS dark short-circuits to true; otherwise wait for the
+  // first hint's target/match (only the first hint is used, as upstream).
+  // Without hints: unchanged MVP/B3 behaviour.
+  function runDarkThemeDetector(callback, hints) {
     stopDarkThemeDetector();
+
+    if (hints && hints.length > 0) {
+      const hint = hints[0];
+      if (hint.noDarkTheme) {
+        callback(false);
+        return;
+      }
+      if (hint.systemTheme && matchMedia('(prefers-color-scheme: dark)').matches) {
+        callback(true);
+        return;
+      }
+      // Deviation from upstream: a hint with nothing to observe (e.g.
+      // `systemTheme` alone under a light OS) would never call back. Upstream
+      // is enable-first so that means "stay themed"; our detect-first path
+      // (hint 'skip') would stay unthemed forever — answer "not dark" instead.
+      if (!hint.target) {
+        callback(false);
+        return;
+      }
+      detectUsingHint(hint, () => callback(true));
+      return;
+    }
 
     if (canCheckForStyle()) {
       runCheck(callback);
@@ -230,6 +318,7 @@
       document.removeEventListener('readystatechange', readyStateListener);
       readyStateListener = null;
     }
+    stopDetectingUsingHint();
   }
 
   globalThis.BDM_DETECTOR = { runDarkThemeDetector, stopDarkThemeDetector, hasBuiltInDarkTheme, parseColor, getSRGBLightness };
