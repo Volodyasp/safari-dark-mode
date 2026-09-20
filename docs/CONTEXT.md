@@ -40,6 +40,12 @@ non-goals in `README.md`.
   `frameId: 0`), rather than through the background script, so status is
   always the frame's own live state.
 
+## Site fixes
+Dark Reader's per-site fixes (`dynamic-theme-fixes.config`, 2909 sites) and
+detector hints are imported at a pinned upstream commit
+(`npm run import-fixes`) and applied per page: the generic `*` block plus the
+most specific matching site block. Sites without a block get the generic one.
+
 ## Accepted residuals
 These are known, deliberate trade-offs, not bugs:
 - The vendored engine refuses to proxy-fetch cross-origin stylesheets from

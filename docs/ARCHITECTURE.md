@@ -3,21 +3,29 @@
 ## Files
 ```
 extension/manifest.json      MV3 manifest
-extension/background.js      runtime.onMessage 'bdm:fetch' only -> fetch -> data-URL reply
+extension/background.js      'bdm:fetch' (fetch -> data-URL) and 'bdm:site-config' (fix + hints per URL)
+extension/proxy.js           page-world (MAIN) stylesheet/CustomElementRegistry proxy (Dark Reader port)
 extension/lib/api.js         captures native sendMessage before vendor wraps it
 extension/lib/settings.js    DEFAULTS, resolve(), storage.local read/write helpers
+extension/lib/url-match.js   Dark Reader URL pattern matching + trie (SW only)
+extension/lib/site-config.js SW: loads data/*.json, merges generic + most specific site fix
+extension/data/*.json        upstream dynamic-theme fixes (2909 sites) + detector hints, pinned commit
 extension/detector.js        built-in-dark-theme detector (Dark Reader port, MIT)
 extension/content.js         per-frame lifecycle (owns tab state)
 extension/popup/*            popup.html/js/css (site + defaults settings)
 extension/vendor/*           vendored darkreader.js + LICENSE (generated, git-ignored)
-scripts/                     vendor.js, icons.js (pretest); safari-convert.sh, safari-build.sh
-tests/                       Playwright e2e: helpers/ (harness, probes), fixtures/, b1..b4 specs
+scripts/                     vendor.js, icons.js (pretest); import-fixes.js; safari-convert.sh, safari-build.sh
+tests/                       Playwright e2e: helpers/ (harness, probes), fixtures/, b1..b6c specs
 safari/                      converter-generated Xcode project (references extension/ live)
 ```
-Content-script load order (fixed, one array in the manifest): `lib/api.js` →
-`vendor/darkreader.js` → `lib/settings.js` → `detector.js` → `content.js`.
-`lib/api.js` must run first because the vendored engine wraps
-`chrome.runtime.sendMessage` with a shim that returns nothing.
+Content scripts: first entry `proxy.js` in the page's MAIN world (Chrome MV3
+blocks the engine's inline proxy `<script>` on every page; the proxy lets
+CSSOM-inserted rules, adopted stylesheets and shadow roots be themed). Second
+entry, isolated world, fixed order: `lib/api.js` → `vendor/darkreader.js` →
+`lib/settings.js` → `detector.js` → `content.js`. `lib/api.js` must run first
+because the vendored engine wraps `chrome.runtime.sendMessage` with a shim
+that returns nothing. `content.js` asks the SW for the site fix (500 ms
+timeout, falls back to no fix) and passes `{...fix}` once to `enable()`.
 
 ## Per-document sequence (every frame; only the top frame answers status)
 1. Read the `sessionStorage` flash-prevention hint synchronously; inject a
