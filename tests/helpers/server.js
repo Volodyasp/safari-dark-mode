@@ -20,6 +20,11 @@ const MIME_TYPES = {
   '.png': 'image/png'
 };
 
+// Explicit list (not prefix-based) of fixture pages served with a real CSP
+// header, so adding a new CSP fixture never accidentally matches an
+// unrelated path.
+const CSP_PAGES = new Set(['/csp.html', '/csp-cssom.html']);
+
 function serveBigBin(res) {
   res.writeHead(200, {
     'Content-Type': 'application/octet-stream',
@@ -59,7 +64,7 @@ function serveFile(req, res) {
     }
     const ext = path.extname(filePath);
     const headers = { 'Content-Type': MIME_TYPES[ext] ?? 'application/octet-stream' };
-    if (relPath === '/csp.html') {
+    if (CSP_PAGES.has(relPath)) {
       headers['Content-Security-Policy'] = "script-src 'self'";
     }
     res.writeHead(200, headers);
