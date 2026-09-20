@@ -21,6 +21,7 @@ DerivedData/
 test-results/
 playwright-report/
 tests/.profile/
+tests/.tmp/
 
 # OS / editors
 .DS_Store

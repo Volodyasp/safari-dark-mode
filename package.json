@@ -5,6 +5,7 @@
   "scripts": {
     "vendor": "node scripts/vendor.js",
     "icons": "node scripts/icons.js",
+    "import-fixes": "node scripts/import-fixes.js",
     "setup": "playwright install chromium",
     "pretest": "npm run vendor && npm run icons",
     "test": "playwright test"

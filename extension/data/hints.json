@@ -1,0 +1,1875 @@
+{
+  "commit": "3df6a4aacb7285859003eb1af3182e4370280b5e",
+  "generatedFrom": "https://raw.githubusercontent.com/darkreader/darkreader/3df6a4aacb7285859003eb1af3182e4370280b5e/src/config/detector-hints.config",
+  "count": 217,
+  "hints": [
+    {
+      "url": [
+        "*.alternate.*",
+        "*.alternate-b2b.*",
+        "*.business.alternate.*"
+      ],
+      "target": "html",
+      "match": [
+        "[data-bs-theme=\"dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "*.arxiv.org",
+        "arxiv.org"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "*.autotask.net"
+      ],
+      "target": "html",
+      "match": [
+        "link[href*=\"/Mvc/FrameworkContent/Styles/LandingMidnight.min.css?\"]"
+      ]
+    },
+    {
+      "url": [
+        "*.euronews.com"
+      ],
+      "target": "body",
+      "match": [
+        ".is-template-video"
+      ]
+    },
+    {
+      "url": [
+        "*.gamer.com.tw"
+      ],
+      "target": "html",
+      "match": [
+        "[data-theme=\"dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "*.ldlc.com",
+        "*.ldlc.pro"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "*.mediawiki.org",
+        "*.wikibooks.org",
+        "*.wikidata.org",
+        "*.wikifunctions.org",
+        "*.wikimedia.org",
+        "*.wikipedia.org",
+        "*.wikiquote.org",
+        "*.wikisource.org",
+        "wikisource.org",
+        "*.wiktionary.org",
+        "*.wikiversity.org",
+        "*.wikivoyage.org"
+      ],
+      "target": "html",
+      "match": [
+        ".skin-theme-clientpref-night"
+      ]
+    },
+    {
+      "url": [
+        "*.msi.com",
+        "funtoro.com"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "*.proton.me"
+      ],
+      "target": "html",
+      "match": [
+        "[data-theme-mode=\"dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "*.quora.com"
+      ],
+      "target": "html",
+      "match": [
+        "[style*=\"color-scheme: dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "*.uncoverit.org"
+      ],
+      "target": "html",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "24noticias.sapo.pt",
+        "tek.sapo.pt"
+      ],
+      "target": "body",
+      "match": [
+        ".black-in-black"
+      ]
+    },
+    {
+      "url": [
+        "9to5google.com",
+        "9to5mac.com",
+        "9to5toys.com",
+        "dronedj.com",
+        "electrek.co",
+        "spaceexplored.com"
+      ],
+      "target": "body",
+      "match": [
+        ".darkmode--activated"
+      ]
+    },
+    {
+      "url": [
+        "account.protonvpn.com"
+      ],
+      "target": "html",
+      "match": [
+        "[data-theme-mode=\"dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "accounts.snapchat.com",
+        "snapchat.com"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "activestate.com"
+      ],
+      "target": "body",
+      "match": [
+        ".dark_bg"
+      ]
+    },
+    {
+      "url": [
+        "adguard.com",
+        "adguard-dns.io",
+        "adguard-mail.com",
+        "adguard-vpn.com"
+      ],
+      "target": "html",
+      "match": [
+        "[data-theme=\"dark\" i]"
+      ]
+    },
+    {
+      "url": [
+        "adrenaline.com.br"
+      ],
+      "target": "body",
+      "match": [
+        ".dark-mode"
+      ]
+    },
+    {
+      "url": [
+        "aerography.eu"
+      ],
+      "target": "html",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "agroportal.pt"
+      ],
+      "target": "body",
+      "match": [
+        ".jnews-dark-mode"
+      ]
+    },
+    {
+      "url": [
+        "akademie.dw.com",
+        "corporate.dw.com"
+      ],
+      "target": "body",
+      "match": [
+        "[data-theme=\"dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "alarabiya.net"
+      ],
+      "target": "body",
+      "match": [
+        ".night-theme"
+      ]
+    },
+    {
+      "url": [
+        "alecks.dev"
+      ],
+      "target": "body",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "altisplay.fr"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "android-x86.org"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "anker.com"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "anonymfile.com"
+      ],
+      "target": "html",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "app.pachca.com"
+      ],
+      "target": "html",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "app.raindrop.io"
+      ],
+      "target": "html",
+      "match": [
+        "[data-theme=\"night\"]"
+      ]
+    },
+    {
+      "url": [
+        "app.thestorygraph.com"
+      ],
+      "target": "html",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "app.todoist.com"
+      ],
+      "target": "html",
+      "match": [
+        ".theme_dark"
+      ]
+    },
+    {
+      "url": [
+        "archdaily.cl",
+        "archdaily.cn",
+        "archdaily.com",
+        "archdaily.com.br",
+        "archdaily.mx"
+      ],
+      "target": "body",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "arstechnica.com"
+      ],
+      "target": "html",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "bandaancha.eu"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "bard.google.com"
+      ],
+      "target": "body",
+      "match": [
+        ".dark-theme"
+      ]
+    },
+    {
+      "url": [
+        "benz.store",
+        "olafbenz.com"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "beta.docs.nodejs.org",
+        "nodejs.org"
+      ],
+      "target": "html",
+      "match": [
+        "[data-theme=\"dark\"]",
+        "[style=\"color-scheme: dark;\"]",
+        ".dark-mode"
+      ]
+    },
+    {
+      "url": [
+        "blog.miguelgrinberg.com"
+      ],
+      "target": "html",
+      "match": [
+        "[data-bs-theme=\"dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "blog.stevezmt.top",
+        "blog-preview.stevezmt.top"
+      ],
+      "target": "body",
+      "match": [
+        ".mdui-theme-layout-dark"
+      ]
+    },
+    {
+      "url": [
+        "blogs.sapo.pt"
+      ],
+      "target": "html",
+      "match": [
+        "[data-theme=\"dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "calendar.cron.com"
+      ],
+      "target": "html",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "calzedonia.com"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "canva.com"
+      ],
+      "target": "html",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "carbuzz.com"
+      ],
+      "systemTheme": true
+    },
+    {
+      "url": [
+        "castroelectronica.pt"
+      ],
+      "target": "body",
+      "match": [
+        ".dark-mode"
+      ]
+    },
+    {
+      "url": [
+        "cezarywalenciuk.pl"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "chat.deepseek.com"
+      ],
+      "target": "body",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "chatgpt.com"
+      ],
+      "target": "html",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "cia.gov"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "codebuff.com"
+      ],
+      "target": "html",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "collider.com"
+      ],
+      "systemTheme": true
+    },
+    {
+      "url": [
+        "console.aws.amazon.com",
+        "*.console.aws.amazon.com"
+      ],
+      "target": "body",
+      "match": [
+        ".awsui-polaris-dark-mode"
+      ]
+    },
+    {
+      "url": [
+        "copilot.microsoft.com"
+      ],
+      "target": "html",
+      "match": [
+        "[data-theme=\"dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "cybenetics.com"
+      ],
+      "target": "body",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "darty.pt"
+      ],
+      "target": "html",
+      "match": [
+        "[theme-mode=\"dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "dashboardicons.com"
+      ],
+      "target": "html",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "dcard.tw"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "deepwiki.com"
+      ],
+      "target": "html",
+      "match": [
+        ".dark",
+        "[style=\"color-scheme: dark;\"]"
+      ]
+    },
+    {
+      "url": [
+        "developer.chrome.com"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "developer.mozilla.org"
+      ],
+      "target": "html",
+      "match": [
+        "[data-theme*=\"dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "diariocriminal.sapo.pt",
+        "diariodabairrada.sapo.pt"
+      ],
+      "target": "body",
+      "match": [
+        "[data-cs=\"dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "dictionary.com"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "digitalinside.com.br",
+        "digitalinside.es",
+        "digitalinside.sapo.pt"
+      ],
+      "target": "body",
+      "match": [
+        ".darkmode"
+      ]
+    },
+    {
+      "url": [
+        "dinheirovivo.dn.pt",
+        "dn.pt",
+        "dnbrasil.dn.pt"
+      ],
+      "target": "body",
+      "match": [
+        "[style*=\"background-color: rgb(29, 29, 29)\"]",
+        "[style*=\"background-color: rgb(0, 0, 0)\"]"
+      ]
+    },
+    {
+      "url": [
+        "discord.com"
+      ],
+      "target": "html",
+      "match": [
+        ".theme-dark"
+      ]
+    },
+    {
+      "url": [
+        "docmost.com"
+      ],
+      "target": "html",
+      "match": [
+        "data-mantine-color-scheme=\"dark\""
+      ]
+    },
+    {
+      "url": [
+        "docs.craft.do"
+      ],
+      "target": "html",
+      "match": [
+        "[style*=\"color-scheme: dark;\"]"
+      ]
+    },
+    {
+      "url": [
+        "docs.piral.io",
+        "docs.piral.cloud"
+      ],
+      "target": "body",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "dw.com"
+      ],
+      "systemTheme": true
+    },
+    {
+      "url": [
+        "ecosia.org"
+      ],
+      "target": "html",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "effect.website"
+      ],
+      "target": "html",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "effect.website/docs"
+      ],
+      "target": "html",
+      "match": [
+        "[data-theme=\"dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "elettronew.com"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "euromaidanpress.com"
+      ],
+      "target": "body",
+      "match": [
+        "[data-scheme=\"dark\"]",
+        "[site-data-scheme=\"dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "euronext.com"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "facebook.com",
+        "instagram.com",
+        "threads.com",
+        "web.facebook.com"
+      ],
+      "target": "html",
+      "match": [
+        ".__fb-dark-mode"
+      ]
+    },
+    {
+      "url": [
+        "findissues.vercel.app"
+      ],
+      "target": "html",
+      "match": [
+        "[data-theme=\"dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "fitgirl-repacks.site"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "flashscore.com"
+      ],
+      "target": "body",
+      "match": [
+        ".theme--dark"
+      ]
+    },
+    {
+      "url": [
+        "flathub.org"
+      ],
+      "target": "html",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "flipboard.com"
+      ],
+      "target": "body",
+      "match": [
+        ".theme--dark"
+      ]
+    },
+    {
+      "url": [
+        "flox.dev"
+      ],
+      "target": "body",
+      "match": [
+        "[data-md-color-media=\"(prefers-color-scheme: dark)]"
+      ]
+    },
+    {
+      "url": [
+        "focus.de"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "foradeserie.sapo.pt"
+      ],
+      "target": "html",
+      "match": [
+        ".site-s-dark",
+        ".s-dark"
+      ]
+    },
+    {
+      "url": [
+        "gamedev.net"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "gchq.github.io/CyberChef"
+      ],
+      "target": "html",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "geizhals.at",
+        "geizhals.de",
+        "geizhals.eu"
+      ],
+      "target": "body",
+      "match": [
+        "[data-darkmode=\"on\"]"
+      ]
+    },
+    {
+      "url": [
+        "gemini.google.com"
+      ],
+      "target": "body",
+      "match": [
+        ".dark-theme"
+      ]
+    },
+    {
+      "url": [
+        "gimp.org"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "ginjfo.com"
+      ],
+      "target": "html",
+      "match": [
+        ".dark-skin"
+      ]
+    },
+    {
+      "url": [
+        "gotquestions.org"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "hacks.guide"
+      ],
+      "target": "html",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "hdblog.it"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "hexdocs.pm"
+      ],
+      "target": "html",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "hexdocs.pm/elixir/"
+      ],
+      "target": "body",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "hexed.it"
+      ],
+      "target": "html",
+      "match": [
+        "[data-color-theme=\"dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "howtogeek.com"
+      ],
+      "systemTheme": true
+    },
+    {
+      "url": [
+        "hub.flox.dev"
+      ],
+      "target": "html",
+      "match": [
+        ".dark-mode"
+      ]
+    },
+    {
+      "url": [
+        "hwcooling.net"
+      ],
+      "target": "body",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "ign.com"
+      ],
+      "target": "html",
+      "match": [
+        "[data-theme=\"dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "inkscape.org"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "kagi.com"
+      ],
+      "target": "html",
+      "match": [
+        ".theme_moon_dark"
+      ]
+    },
+    {
+      "url": [
+        "kaosx.us"
+      ],
+      "target": "html",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "knightedgemedia.com"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "knowledgeatlas.blog"
+      ],
+      "target": "html",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "launcher.keychron.com"
+      ],
+      "target": "html",
+      "match": [
+        ".dark-theme"
+      ]
+    },
+    {
+      "url": [
+        "learn.standardresume.co"
+      ],
+      "target": "html",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "learngerman.dw.com"
+      ],
+      "target": "html",
+      "match": [
+        ".theme-dark"
+      ]
+    },
+    {
+      "url": [
+        "leetcode.com"
+      ],
+      "target": "html",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "lingoblocks.com"
+      ],
+      "target": "html",
+      "match": [
+        ".dark-mode"
+      ]
+    },
+    {
+      "url": [
+        "linkedin.com/analytics",
+        "linkedin.com/explore-career-insights",
+        "linkedin.com/feed",
+        "linkedin.com/games",
+        "linkedin.com/in",
+        "linkedin.com/jobs",
+        "linkedin.com/jobs-tracker",
+        "linkedin.com/mynetwork",
+        "linkedin.com/newsletters",
+        "linkedin.com/search"
+      ],
+      "target": "body",
+      "match": [
+        "[data-color-scheme=\"dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "linkedin.com/company",
+        "linkedin.com/events",
+        "linkedin.com/groups",
+        "linkedin.com/job-posting",
+        "linkedin.com/messaging",
+        "linkedin.com/my-items",
+        "linkedin.com/mypreferences",
+        "linkedin.com/notifications",
+        "linkedin.com/premium",
+        "linkedin.com/pulse",
+        "linkedin.com/showcase"
+      ],
+      "target": "html",
+      "match": [
+        ".theme--dark",
+        ".theme--mercado-dark"
+      ]
+    },
+    {
+      "url": [
+        "livecenter.tiktok.com",
+        "tiktok.com"
+      ],
+      "target": "html",
+      "match": [
+        "[data-tux-color-scheme=\"dark\"]",
+        "[data-theme=\"dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "magellantv.com"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "majorgeeks.com"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "manfrotto.com"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "materiel.net"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "menshealth.pt",
+        "womenshealth.pt"
+      ],
+      "target": "body",
+      "match": [
+        ".sk-dark-theme"
+      ]
+    },
+    {
+      "url": [
+        "mermaid.live/edit"
+      ],
+      "target": "html",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "messages.google.com"
+      ],
+      "target": "body",
+      "match": [
+        ".dark-theme"
+      ]
+    },
+    {
+      "url": [
+        "mh.co.za"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "militarnyi.com"
+      ],
+      "target": "body",
+      "match": [
+        ".theme-dark"
+      ]
+    },
+    {
+      "url": [
+        "modelcontextprotocol.io"
+      ],
+      "target": "html",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "motomais.motosport.com.pt",
+        "motosport.com.pt",
+        "mundonautico.pt",
+        "revistacarros.pt"
+      ],
+      "target": "body",
+      "match": [
+        ".jnews-dark-mode"
+      ]
+    },
+    {
+      "url": [
+        "motor24.pt"
+      ],
+      "target": "body",
+      "match": [
+        ".active-dark-mode"
+      ]
+    },
+    {
+      "url": [
+        "msn.com"
+      ],
+      "systemTheme": true
+    },
+    {
+      "url": [
+        "music.apple.com",
+        "tv.apple.com"
+      ],
+      "systemTheme": true
+    },
+    {
+      "url": [
+        "music.yandex.*"
+      ],
+      "target": "body",
+      "match": [
+        ".ym-dark-theme"
+      ]
+    },
+    {
+      "url": [
+        "my.nextdns.io"
+      ],
+      "target": "html",
+      "match": [
+        "[data-bs-theme=\"dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "neetcode.io"
+      ],
+      "target": "html",
+      "match": [
+        ".dark-theme"
+      ]
+    },
+    {
+      "url": [
+        "newscientist.com"
+      ],
+      "target": "html",
+      "match": [
+        "[data-theme=\"dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "next-episode.net"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "nomoremister.blogspot.com"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "norfolk.citizenspace.com"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "notion.so"
+      ],
+      "target": "body",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "nytimes.com"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "objshadow.is-a.dev",
+        "objshadow.pages.dev",
+        "objshadow.tun.webredirect.org",
+        "shadow.tun.webredirect.org",
+        "shadowobj.eu.org"
+      ],
+      "target": "html",
+      "match": [
+        "[data-scheme=\"dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "ominho.pt"
+      ],
+      "target": "body",
+      "match": [
+        "[data-scheme=\"dark\"]",
+        "[data-site-scheme=\"dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "omnivore.app"
+      ],
+      "target": "html",
+      "match": [
+        ".Dark"
+      ]
+    },
+    {
+      "url": [
+        "onedrive.live.com",
+        "word-edit.officeapps.live.com"
+      ],
+      "target": "body",
+      "match": [
+        ".UxDarkMode"
+      ],
+      "iframe": []
+    },
+    {
+      "url": [
+        "open-meteo.com"
+      ],
+      "target": "html",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "openrouter.ai"
+      ],
+      "target": "html",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "ostechnix.com"
+      ],
+      "target": "body",
+      "match": [
+        ".pcdark-mode"
+      ]
+    },
+    {
+      "url": [
+        "outlook.live.com",
+        "outlook.office.com"
+      ],
+      "target": "html",
+      "match": [
+        "[style*=\"--black: #FFFFFF\"]"
+      ]
+    },
+    {
+      "url": [
+        "overclocking.com"
+      ],
+      "target": "body",
+      "match": [
+        ".darkmode--activated"
+      ]
+    },
+    {
+      "url": [
+        "pass.proton.me"
+      ],
+      "target": "body",
+      "match": [
+        ".pass-dark"
+      ]
+    },
+    {
+      "url": [
+        "pausehardware.com"
+      ],
+      "target": "html",
+      "match": [
+        ".dark-skin"
+      ]
+    },
+    {
+      "url": [
+        "pcgamesn.com"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "philosophicaldisquisitions.blogspot.com"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "photopea.com"
+      ],
+      "target": "html",
+      "match": [
+        "[style*=\"--base: #474747\"]",
+        "[style*=\"--base: #404550\"]",
+        "[style*=\"--base: #222531\"]",
+        "[style*=\"--base: #4b3e51\"]",
+        "[style*=\"--base: #353535\"]"
+      ]
+    },
+    {
+      "url": [
+        "php.net"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "pixiv.net"
+      ],
+      "target": "html",
+      "match": [
+        "[data-theme=\"dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "pkmer.cn"
+      ],
+      "target": "html",
+      "match": [
+        ".theme-dark"
+      ]
+    },
+    {
+      "url": [
+        "postal.fandom.com"
+      ],
+      "target": "body",
+      "match": [
+        "[data-theme=\"dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "powerthesaurus.org",
+        "*.powerthesaurus.org"
+      ],
+      "target": "body",
+      "match": [
+        "[data-theme=\"dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "practers.com"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "privacyjournal.net"
+      ],
+      "target": "html",
+      "match": [
+        "[color-mode=\"dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "project2025.observer"
+      ],
+      "target": "html",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "psnprofiles.com"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "qobuz.com"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "quantamagazine.org"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "radboudumc.nl"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "react.dev"
+      ],
+      "target": "html",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "reddit.com",
+        "new.reddit.com"
+      ],
+      "target": "html",
+      "match": [
+        ".theme-dark"
+      ]
+    },
+    {
+      "url": [
+        "regex101.com"
+      ],
+      "target": "html",
+      "match": [
+        "[data-theme=\"dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "regexr.com"
+      ],
+      "target": "link[href*=\"dark.css\"]",
+      "match": [
+        "*"
+      ]
+    },
+    {
+      "url": [
+        "restofworld.org"
+      ],
+      "target": "body",
+      "match": [
+        ".dark-mode"
+      ]
+    },
+    {
+      "url": [
+        "rtp.pt"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "sapo.pt"
+      ],
+      "systemTheme": true
+    },
+    {
+      "url": [
+        "satisfactory.wiki.gg"
+      ],
+      "target": "html",
+      "match": [
+        ".theme-dark"
+      ]
+    },
+    {
+      "url": [
+        "scrumguides.org"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "search.brave.com"
+      ],
+      "target": "html",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "sevendistrictscoffee.com"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "si.edu"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "simplywall.st/ai-terms",
+        "simplywall.st/plans",
+        "simplywall.st/*/plans",
+        "simplywall.st/privacy-policy",
+        "simplywall.st/register",
+        "simplywall.st/terms-and-conditions",
+        "simplywall.st/welcome"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "simplywall.st/article",
+        "simplywall.st/community",
+        "simplywall.st/dashboard",
+        "simplywall.st/discover",
+        "simplywall.st/*/discover",
+        "simplywall.st/gift-card",
+        "simplywall.st/markets",
+        "simplywall.st/news",
+        "simplywall.st/portfolio",
+        "simplywall.st/*/portfolio",
+        "simplywall.st/screener",
+        "simplywall.st/*/screener",
+        "simplywall.st/stocks",
+        "simplywall.st/*/stocks",
+        "simplywall.st/user",
+        "simplywall.st/*/user",
+        "simplywall.st/watchlist"
+      ],
+      "target": "body",
+      "match": [
+        "[data-theme=\"dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "slack.com",
+        "*.slack.com"
+      ],
+      "target": "body",
+      "match": [
+        ".sk-client-theme--dark"
+      ]
+    },
+    {
+      "url": [
+        "soccer24.com"
+      ],
+      "target": "body",
+      "match": [
+        ".theme--dark"
+      ]
+    },
+    {
+      "url": [
+        "sojo.net"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "sports.ru"
+      ],
+      "target": "body",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "steamgifts.com"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "switchbacktravel.com"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "syzygy-tables.info"
+      ],
+      "systemTheme": true
+    },
+    {
+      "url": [
+        "t-j.ru"
+      ],
+      "target": "html",
+      "match": [
+        ".tj-dark-theme"
+      ]
+    },
+    {
+      "url": [
+        "takeuforward.org"
+      ],
+      "target": "body",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "teams.live.com"
+      ],
+      "target": "html",
+      "match": [
+        ".theme-tfl-dark"
+      ]
+    },
+    {
+      "url": [
+        "telex.hu"
+      ],
+      "target": "html",
+      "match": [
+        ".dark-mode"
+      ]
+    },
+    {
+      "url": [
+        "thefederalist.com"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "thelinuxvault.net"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "themoviedb.org"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "thesweetbits.com"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "thetrevorproject.org"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "theverge.com"
+      ],
+      "target": "main",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "thurrott.com"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "tidal.com/formusic",
+        "tidal.com/partners",
+        "tidal.com/press",
+        "tidal.com/privacy",
+        "tidal.com/supported-devices",
+        "tidal.com/terms"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "topachat.com"
+      ],
+      "target": "html",
+      "match": [
+        "[colortheme=\"dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "turbo.pt"
+      ],
+      "target": "html",
+      "match": [
+        ".sk-game-dark-theme"
+      ]
+    },
+    {
+      "url": [
+        "twitch.tv"
+      ],
+      "target": "body",
+      "match": [
+        ".dark-theme"
+      ]
+    },
+    {
+      "url": [
+        "twitter.com"
+      ],
+      "target": "body",
+      "match": [
+        "[style*=\"background-color: rgb(0, 0, 0)\"]"
+      ]
+    },
+    {
+      "url": [
+        "uicolors.app"
+      ],
+      "target": "html",
+      "match": [
+        "[data-color-mode=\"dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "universemagazine.com"
+      ],
+      "target": "html",
+      "match": [
+        ".theme-dark"
+      ]
+    },
+    {
+      "url": [
+        "vecernji.hr"
+      ],
+      "target": "html",
+      "match": [
+        "[data-theme=\"dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "vocabowl-870366514258.us-west1.run.app"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "w3schools.com"
+      ],
+      "target": "body",
+      "match": [
+        ".darktheme"
+      ]
+    },
+    {
+      "url": [
+        "wccftech.com"
+      ],
+      "target": "html",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "web.telegram.org/a"
+      ],
+      "target": "html",
+      "match": [
+        ".theme-dark"
+      ]
+    },
+    {
+      "url": [
+        "web.telegram.org/k"
+      ],
+      "target": "html",
+      "match": [
+        ".night"
+      ]
+    },
+    {
+      "url": [
+        "web.whatsapp.com"
+      ],
+      "target": "body",
+      "match": [
+        ".dark"
+      ]
+    },
+    {
+      "url": [
+        "wiki.greasespot.net"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "windowslatest.com"
+      ],
+      "target": "html",
+      "match": [
+        "[data-user-theme=\"blue\"]",
+        "[data-user-theme=\"dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "x.com"
+      ],
+      "target": "body",
+      "match": [
+        "[style*=\"background-color: rgb(0, 0, 0)\"]"
+      ]
+    },
+    {
+      "url": [
+        "xda-developers.com"
+      ],
+      "systemTheme": true
+    },
+    {
+      "url": [
+        "xtb.com"
+      ],
+      "noDarkTheme": true
+    },
+    {
+      "url": [
+        "yandex.*/maps",
+        "yandex.*/web-maps"
+      ],
+      "target": "body",
+      "match": [
+        "._theme_dark"
+      ]
+    },
+    {
+      "url": [
+        "yandex.*/pogoda",
+        "yandex.*/weather"
+      ],
+      "target": "html",
+      "match": [
+        "[data-theme=\"dark\"]"
+      ]
+    },
+    {
+      "url": [
+        "youtube.com"
+      ],
+      "target": "html",
+      "match": [
+        "[dark]"
+      ]
+    },
+    {
+      "url": [
+        "zoom.com",
+        "zoom.us"
+      ],
+      "noDarkTheme": true
+    }
+  ]
+}
