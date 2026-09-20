@@ -17,6 +17,7 @@
   let sitesTrie = null;
   let hintsTrie = null;
   let loadPromise = null;
+  let commit = null; // fixes.json's pinned commit (B6d: echoed back so content.js can validate its fix cache)
 
   // Builds a BDM_URL trie over every pattern in `entries[].url`, mapping
   // each pattern back to the index of the entry it belongs to (an entry can
@@ -99,6 +100,7 @@
         hints = hintsData.hints;
         sitesTrie = buildTrie(sites);
         hintsTrie = buildTrie(hints);
+        commit = fixesData.commit ?? null;
       } catch (err) {
         console.warn('[bdm]', err);
         generic = null;
@@ -106,6 +108,7 @@
         hints = [];
         sitesTrie = null;
         hintsTrie = null;
+        commit = null;
       }
     })();
     return loadPromise;
@@ -113,7 +116,7 @@
 
   function lookup(url) {
     if (!generic) {
-      return { fix: null, hints: [] };
+      return { fix: null, hints: [], commit: null };
     }
 
     const candidates = [generic, ...matchedEntries(url, sitesTrie, sites)];
@@ -124,7 +127,9 @@
       delete combined.url; // SPECS-11 §4.1: "fix.url omitted"
     }
 
-    return { fix: combined, hints: matchedEntries(url, hintsTrie, hints) };
+    // B6d: `commit` lets content.js validate its localStorage fix cache
+    // without re-asking the SW (SPECS-11 §4.2 delta).
+    return { fix: combined, hints: matchedEntries(url, hintsTrie, hints), commit };
   }
 
   globalThis.BDM_SITE_CONFIG = { load, lookup };

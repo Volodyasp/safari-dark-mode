@@ -47,14 +47,110 @@ try {
     });
   }
 
-  // Fired once per document, in parallel with the synchronous document_start
-  // work below (never delays the fallback injection). `rerun()` awaits this
-  // same promise every time it runs — cheap after the first resolution.
-  const siteConfigPromise = withTimeout(
-    __bdm.sendMessage({ type: 'bdm:site-config', url: location.href }),
-    500,
-    { fix: null, hints: [] }
-  );
+  // B6d flash-reduction fix cache (SPECS-11 §4.2 delta): the pinned commit
+  // `extension/data/fixes.json` was generated at. `content.js` cannot fetch
+  // that file itself (no `web_accessible_resources`, and doing so from every
+  // frame would defeat the whole point of caching), so this is a literal
+  // duplicate of that file's top-level "commit" field — the only way to
+  // validate a cached entry's `commit` synchronously, without waiting on the
+  // very SW round-trip the cache exists to avoid. Residual: if the pinned
+  // commit is ever bumped (`scripts/import-fixes.js`'s `IMPORT_COMMIT`
+  // default, or a future `update-engine`) without updating this constant to
+  // match, the cache silently stops being used (every read fails the
+  // `commit` check) and every load falls back to asking the SW — no crash,
+  // no wrong theme, just no speed-up until the two are back in sync.
+  const FIXES_COMMIT = '3df6a4aacb7285859003eb1af3182e4370280b5e';
+  const FIX_CACHE_KEY = 'bdm:fix';
+  const FIX_CACHE_MAX_CHARS = 64 * 1024;
+
+  // Read at document_start, once, synchronously, by every frame. `host`
+  // matches against THIS frame's own `location.hostname`, not `topHost`:
+  // `localStorage` is strictly origin-scoped, so any frame that can even see
+  // an entry already shares the writer's origin — "own hostname" and
+  // "topHost" coincide for every frame where the cache is reachable at all,
+  // which makes a `topHost` comparison redundant (and wrong for a
+  // same-origin subframe checking against a *different* top-level site's
+  // cache key, which it could never see anyway).
+  // Shallow shape check: the entry is page-writable, so a malformed `fix`
+  // must degrade to a cache miss (SW path), not reach the engine.
+  function isValidFixShape(fix) {
+    if (!fix || typeof fix !== 'object') return false;
+    if (fix.css !== undefined && typeof fix.css !== 'string') return false;
+    for (const key of ['invert', 'ignoreInlineStyle', 'ignoreImageAnalysis', 'ignoreCSSUrl']) {
+      if (fix[key] !== undefined && !Array.isArray(fix[key])) return false;
+    }
+    return true;
+  }
+
+  // Path is part of the key: 19 hosts ship path-scoped fixes (apple.com/shop
+  // vs apple.com/macos, docs/drive/play.google.com), so a host-only hit would
+  // serve the wrong section's fix. Pathname equality is stricter than the
+  // matcher (extra misses on trailing-slash variants, never a wrong hit).
+  function readFixCache() {
+    try {
+      const raw = localStorage.getItem(FIX_CACHE_KEY);
+      if (!raw || raw.length > FIX_CACHE_MAX_CHARS) {
+        return null;
+      }
+      const parsed = JSON.parse(raw);
+      if (
+        !parsed ||
+        typeof parsed !== 'object' ||
+        parsed.host !== location.hostname ||
+        parsed.path !== location.pathname ||
+        parsed.commit !== FIXES_COMMIT ||
+        !isValidFixShape(parsed.fix) ||
+        !Array.isArray(parsed.hints)
+      ) {
+        return null;
+      }
+      return { fix: parsed.fix, hints: parsed.hints };
+    } catch {
+      return null;
+    }
+  }
+
+  // Top frame only, after a REAL (non-timeout-fallback) bdm:site-config
+  // reply. Never re-enables anything now — this only affects the NEXT load
+  // of this origin. Skips a degraded reply (`fix: null`, i.e. the SW's own
+  // `data/*.json` load failed) so a transient SW failure is never cached as
+  // a confirmed empty fix.
+  function writeFixCache(reply) {
+    if (window !== window.top || !reply || !reply.fix) {
+      return;
+    }
+    try {
+      const entry = {
+        host: location.hostname,
+        path: location.pathname,
+        commit: reply.commit,
+        fix: reply.fix,
+        hints: reply.hints ?? [],
+      };
+      const serialized = JSON.stringify(entry);
+      if (serialized.length > FIX_CACHE_MAX_CHARS) {
+        return;
+      }
+      localStorage.setItem(FIX_CACHE_KEY, serialized);
+    } catch {
+      // ignore (quota, circular structures, SecurityError, etc.)
+    }
+  }
+
+  // The real request always fires (background cache maintenance), in
+  // parallel with the synchronous document_start work below (never delays
+  // the fallback injection) — regardless of whether this load ends up using
+  // a cached fix instead of waiting for this to resolve.
+  const siteConfigRequest = __bdm.sendMessage({ type: 'bdm:site-config', url: location.href });
+  siteConfigRequest.then(writeFixCache, () => {});
+
+  // On a cache hit, `rerun()`'s `Promise.all([loadStore(), siteConfigPromise])`
+  // below only ever waits on `loadStore()` — `Promise.resolve(cached)`
+  // settles on the next microtask. On a miss, unchanged: the 500 ms timeout
+  // fallback against the real request. Decided once, synchronously, before
+  // any async work — same "computed once per document" spirit as `FIXES`.
+  const cachedSiteConfig = readFixCache();
+  const siteConfigPromise = cachedSiteConfig ? Promise.resolve(cachedSiteConfig) : withTimeout(siteConfigRequest, 500, { fix: null, hints: [] });
 
   // Fallback CSS text verbatim per B2.md step 2 / AN §step 1.
   const FALLBACK_CSS =
@@ -68,7 +164,24 @@ try {
   let topHost = '';
   let store = null;
 
+  // B6d: moved from `sessionStorage` (per-tab) to `localStorage` (shared by
+  // every tab of the same origin) — a brand-new tab now inherits the most
+  // recent decision instead of guessing by OS scheme alone, which is what
+  // caused a wrong-guess flash whenever the guess and the real decision
+  // disagreed (e.g. `Enabled=On` + light OS, or a `skip` site under dark
+  // OS). One-release legacy fallback: if `localStorage` has no value yet,
+  // read the old `sessionStorage` key once — the very next `writeHint()`
+  // (which only ever targets `localStorage` now) completes the migration
+  // for that origin without any explicit forward-write needed.
   function readHint() {
+    try {
+      const value = localStorage.getItem('bdm:hint');
+      if (value !== null) {
+        return value;
+      }
+    } catch {
+      // fall through to the legacy read below
+    }
     try {
       return sessionStorage.getItem('bdm:hint');
     } catch {
@@ -76,14 +189,14 @@ try {
     }
   }
 
-  // Only the top frame writes: sessionStorage is shared by same-origin frames
-  // of the tab, and a subframe must never overwrite the top's hint.
+  // Only the top frame writes: the hint is shared by same-origin frames
+  // (and now same-origin tabs too), and a subframe must never overwrite it.
   function writeHint(value) {
     if (window !== window.top) {
       return;
     }
     try {
-      sessionStorage.setItem('bdm:hint', value);
+      localStorage.setItem('bdm:hint', value);
     } catch {
       // ignore (e.g. SecurityError in a sandboxed/opaque-origin frame)
     }

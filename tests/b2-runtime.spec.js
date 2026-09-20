@@ -212,19 +212,25 @@ test.describe('AC-11b bdm:status and subframe hint isolation', () => {
     expect(status.wantDark).toBe(true);
   });
 
-  test('same-origin subframe never writes the hint', async ({ page, sw }) => {
+  // B6d: the hint (and the new fix cache) live in localStorage now, shared
+  // by every same-origin frame/tab — still top-frame-only for writes.
+  test('same-origin subframe never writes the hint or the fix cache', async ({ page, sw }) => {
     await page.emulateMedia({ colorScheme: 'light' });
     await storageSet(sw, { defaults: { enabled: 'auto', ignoreDark: false } });
     await page.goto('http://127.0.0.1:4180/iframe.html');
     await page.waitForTimeout(300);
 
-    await page.evaluate(() => sessionStorage.setItem('bdm:hint', 'marker'));
+    await page.evaluate(() => {
+      localStorage.setItem('bdm:hint', 'marker');
+      localStorage.setItem('bdm:fix', 'marker');
+    });
     await page.evaluate(() => {
       document.getElementById('same').contentWindow.location.reload();
     });
     await page.waitForTimeout(300);
 
-    const hint = await page.evaluate(() => sessionStorage.getItem('bdm:hint'));
+    const [hint, fix] = await page.evaluate(() => [localStorage.getItem('bdm:hint'), localStorage.getItem('bdm:fix')]);
     expect(hint).toBe('marker');
+    expect(fix).toBe('marker');
   });
 });

@@ -91,10 +91,12 @@ async function darkreaderNodeCount(pageOrFrame) {
   return pageOrFrame.evaluate(() => document.querySelectorAll('.darkreader').length);
 }
 
+// B6d: the hint moved from sessionStorage (per-tab) to localStorage (shared
+// across tabs of the same origin) — read the same key from its new home.
 async function readHint(page) {
   return page.evaluate(() => {
     try {
-      return sessionStorage.getItem('bdm:hint');
+      return localStorage.getItem('bdm:hint');
     } catch {
       return null;
     }

@@ -45,6 +45,34 @@ async function storageClear(sw) {
   await sw.evaluate(() => chrome.storage.local.clear());
 }
 
+// B6d: `bdm:hint`/`bdm:fix` moved from sessionStorage (naturally isolated
+// per tab, so a fresh `page` per test was enough) to localStorage, which is
+// shared by every page of the same origin for the lifetime of the
+// worker-scoped persistent profile. Without this, one test's hint/fix-cache
+// decision would leak into the next test that happens to reuse the same
+// fixture origin. Clears the two origins essentially every spec uses
+// (`https://cdn.example`/other one-off routed origins are used by a small
+// number of unrelated tests and are not worth the extra navigation).
+const LOCAL_STORAGE_ORIGINS = ['http://127.0.0.1:4180', 'http://localhost:4181'];
+
+// Navigating to each origin to call `localStorage.clear()` was tried first
+// and rejected: navigating there at all re-runs the extension's own
+// content.js (document_start, on every matching page, no way to opt out for
+// just this one utility load), which resolves its own settings and writes a
+// *new* hint/fix-cache value asynchronously, racing (and often losing
+// against) the clear itself — leaving a deterministic but non-null leaked
+// value instead of a clean slate. CDP's `Storage.clearDataForOrigin` clears
+// the origin's storage directly, with no navigation and no content.js run.
+async function clearLocalStorage(context) {
+  const page = await context.newPage();
+  const client = await context.newCDPSession(page);
+  for (const origin of LOCAL_STORAGE_ORIGINS) {
+    await client.send('Storage.clearDataForOrigin', { origin, storageTypes: 'local_storage' });
+  }
+  await client.detach();
+  await page.close();
+}
+
 const test = base.extend({
   servers: [
     async ({}, use) => {
@@ -100,8 +128,9 @@ const test = base.extend({
 
   // Automatic per-test isolation: never let one test's storage leak into the next.
   storageClearedPerTest: [
-    async ({ sw }, use) => {
+    async ({ sw, context }, use) => {
       await storageClear(sw);
+      await clearLocalStorage(context);
       await use();
     },
     { auto: true }

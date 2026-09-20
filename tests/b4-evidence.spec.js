@@ -44,7 +44,7 @@ test('capture popup on light.html', async ({ page, context, sw, extensionId }) =
 test('capture popup on dark-bg.html with the banner', async ({ page, context, sw, extensionId }) => {
   await page.emulateMedia({ colorScheme: 'dark' });
   await page.goto('http://127.0.0.1:4180/dark-bg.html');
-  await page.waitForFunction(() => sessionStorage.getItem('bdm:hint') === 'skip');
+  await page.waitForFunction(() => localStorage.getItem('bdm:hint') === 'skip');
   const tabId = await getTabId(sw, page.url());
 
   const popup = await openPopupForScreenshot(context, extensionId, tabId);

@@ -69,6 +69,11 @@ function arrayBufferToBase64(buffer) {
 }
 
 // SPECS-11 §4.2: content -> SW {type, url}; SW loads (once) then looks up.
+// Reply shape (B6d delta): {fix, hints, commit} — `commit` (fixes.json's
+// pinned commit, forwarded by BDM_SITE_CONFIG.lookup()) lets content.js
+// validate its own localStorage fix cache without re-asking the SW. No
+// logic change here: this function already forwards whatever lookup()
+// returns.
 async function handleSiteConfig(url) {
   await BDM_SITE_CONFIG.load();
   if (__bdmDelaySiteConfig > 0) {

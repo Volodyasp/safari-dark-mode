@@ -28,9 +28,17 @@ that returns nothing. `content.js` asks the SW for the site fix (500 ms
 timeout, falls back to no fix) and passes `{...fix}` once to `enable()`.
 
 ## Per-document sequence (every frame; only the top frame answers status)
-1. Read the `sessionStorage` flash-prevention hint synchronously; inject a
-   fallback dark stylesheet if the hint (or a guess from the OS scheme, when
-   there's no hint yet) says this tab wants dark.
+1. Read the `localStorage` flash-prevention hint synchronously (B6d: moved
+   from `sessionStorage`, per-tab, to `localStorage`, shared by every tab of
+   the same origin — a brand-new tab now inherits the last decision instead
+   of guessing by OS scheme alone); inject a fallback dark stylesheet if the
+   hint (or a guess from the OS scheme, when there's no hint yet) says this
+   tab wants dark. Also read the `localStorage` site-fix cache (B6d):
+   `{host, commit, fix, hints}`, written by the top frame after a real
+   `bdm:site-config` reply. On a hit (`host`/`commit` match), `FIXES` is
+   filled from the cache immediately and `rerun()` doesn't wait on the SW at
+   all; the real `bdm:site-config` request still fires in the background and
+   refreshes the cache for the next load.
 2. Load settings from `storage.local`, resolve `wantDark`/`ignoreDark` for
    this frame's top-level host.
 3. Not wanting dark: disable, drop the fallback, hint = `skip`.
@@ -48,6 +56,7 @@ timeout, falls back to no fix) and passes `{...fix}` once to `enable()`.
 |---|---|---|
 | `bdm:status` | popup → content (top frame, `frameId:0`) | `{host, defaults, siteEnabled, siteIgnoreDark, enabled, ignoreDark, wantDark, osDark, applied, detectedDark}` |
 | `bdm:fetch` | content → background | `{ok:true, dataUrl}` or `{ok:false, error}` |
+| `bdm:site-config` | content → background | `{fix, hints, commit}` (`commit` added in B6d: fixes.json's pinned commit, lets content.js validate its `localStorage` fix cache without asking the SW again) |
 | (settings) | any → `storage.local` | no message; both popup and content listen to `storage.onChanged` |
 
 ## Storage (`storage.local`, v1)

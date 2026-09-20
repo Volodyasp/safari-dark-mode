@@ -27,12 +27,16 @@ non-goals in `README.md`.
   background/service-worker map of tab state (which MV3's service-worker
   lifecycle would make fragile) — each frame's content script resolves its
   own settings and answers the popup directly.
-- **Flash prevention via a same-tab session hint, not storage.** Reading
-  `storage.local` is asynchronous, so the very first paint uses a
-  synchronous `sessionStorage` hint (written by the top frame only) plus a
+- **Flash prevention via a same-origin `localStorage` hint, not storage.**
+  Reading `storage.local` is asynchronous, so the very first paint uses a
+  synchronous `localStorage` hint (written by the top frame only) plus a
   pre-injected fallback stylesheet, both established in local design/review
   notes kept outside this repository (not published; summarized here and in
-  `docs/ARCHITECTURE.md`).
+  `docs/ARCHITECTURE.md`). B6d moved this from `sessionStorage` (per-tab) to
+  `localStorage` (shared by every tab of the same origin) so a brand-new tab
+  inherits the last real decision instead of guessing by OS scheme alone;
+  B6d also added a `localStorage` cache of the merged site fix, so a repeat
+  load of a known origin skips waiting on the service worker entirely.
 - **Detection is a whole-file port of Dark Reader's own detector**, minus
   its "hints" configuration (out of scope) — same thresholds, so behaviour
   matches what Dark Reader itself would decide for a given page.
@@ -54,9 +58,19 @@ These are known, deliberate trade-offs, not bugs:
 - A page with a restrictive `script-src` CSP blocks the engine's inline
   cross-origin-detection script; the engine falls back to degraded
   handling for that page's stylesheets rather than failing outright.
-- A tab's very first load in a fresh session guesses by OS scheme before
-  settings finish loading, so it can show one wrong-color flash; repeat
-  loads in that tab don't.
+- A genuinely brand-new origin's very first load (no other tab has ever
+  decided for it, and no cached fix exists yet) still guesses by OS scheme
+  before settings finish loading, so it can show one wrong-color flash;
+  every load after that, in any tab of that origin, doesn't (B6d).
+- The site-fix cache can lag one load behind a real per-site fix change: if
+  a cached entry's `commit` still matches but the SW's fresh reply for that
+  same load differs (which cannot currently happen — `fixes.json` only
+  changes via `npm run import-fixes`, which always bumps `commit` — but
+  would if the merge logic itself changed keeping the same commit), the
+  cached fix is still what gets applied for that load; the background
+  request already refreshes the cache, so the very next load is correct.
+  The cache is keyed by host + pathname (+ commit): a different path on the
+  same host is a miss and waits for the SW, never a wrong hit.
 - Safari does not support `match_about_blank` (the converter reports it as
   unsupported for this Safari version), so `about:blank`/`srcdoc` frames
   may not receive the content script there; Chrome is unaffected.

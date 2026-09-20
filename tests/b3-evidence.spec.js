@@ -19,7 +19,7 @@ test.beforeAll(() => {
 test('capture dark-bg.html left untouched by the engine', async ({ page }) => {
   await page.emulateMedia({ colorScheme: 'dark' });
   await page.goto('http://127.0.0.1:4180/dark-bg.html');
-  await page.waitForFunction(() => sessionStorage.getItem('bdm:hint') === 'skip');
+  await page.waitForFunction(() => localStorage.getItem('bdm:hint') === 'skip');
   await page.screenshot({ path: path.join(EVIDENCE_DIR, 'dark-bg-untouched.png') });
 });
 
