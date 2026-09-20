@@ -92,7 +92,9 @@ function validateURLPatterns(list, kind) {
 }
 
 function writeJSON(filePath, data) {
-  fs.writeFileSync(filePath, `${JSON.stringify(data, null, 2)}\n`);
+  // Compact on purpose: the SW parses this on every cold start (21% smaller
+  // than pretty-printed); diffs are reviewed via the upstream commit, not here.
+  fs.writeFileSync(filePath, `${JSON.stringify(data)}\n`);
 }
 
 async function main() {
