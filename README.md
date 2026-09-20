@@ -42,14 +42,21 @@ the real Chrome UI is the only way to try it manually.
 `scripts/safari-convert.sh` runs `xcrun safari-web-extension-converter` to
 generate an Xcode project under `safari/` that references `extension/`
 directly (no copied resources, so the app always builds from the current
-extension code). `scripts/safari-build.sh` then builds it. This machine has
-no codesigning identity and no Xcode team, so the build is **ad-hoc**
-(`CODE_SIGN_IDENTITY=-`): the resulting app needs "Allow unsigned
-extensions" toggled in Safari on every launch, same as the temporary
-install. Signing with a free Apple ID's "Apple Development" certificate (via
-Xcode ▸ Settings ▸ Accounts), or a paid Developer ID certificate plus
-notarization, would remove that per-launch toggle — neither was verified on
-this machine.
+extension code). `scripts/safari-build.sh` then builds it:
+
+- `DEVELOPMENT_TEAM=<team id> bash scripts/safari-build.sh` — automatic
+  signing with an Apple Development certificate (free Apple ID added in
+  Xcode ▸ Settings ▸ Apple Accounts; the team id is shown there). Xcode
+  creates the certificate on first use. The app installs in Safari with no
+  per-launch toggle. Verified.
+- `bash scripts/safari-build.sh` — ad-hoc (`CODE_SIGN_IDENTITY=-`): the app
+  needs "Allow unsigned extensions" toggled in Safari on every launch.
+  Verified.
+- Developer ID + notarization (for distribution outside the App Store) is
+  not covered here.
+
+Run the result once: `open "safari/build/Build/Products/Debug/Browser Dark
+Mode.app"`, then enable it in Safari ▸ Settings ▸ Extensions.
 
 ## Development
 ```
