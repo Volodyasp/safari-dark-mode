@@ -2,7 +2,7 @@
 //  SafariWebExtensionHandler.swift
 //  Browser Dark Mode Extension
 //
-//  Created by Vladimir Suponin on 18/09/2026.
+//  Created by Vladimir Suponin on 20/09/2026.
 //
 
 import SafariServices

@@ -3,159 +3,153 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 110;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E7A83700305DBEB70009E277 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A836FF305DBEB70009E277 /* AppDelegate.swift */; };
-		E7A83704305DBEB70009E277 /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = E7A83702305DBEB70009E277 /* Main.html */; };
-		E7A83706305DBEB70009E277 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E7A83705305DBEB70009E277 /* Icon.png */; };
-		E7A83708305DBEB70009E277 /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = E7A83707305DBEB70009E277 /* Style.css */; };
-		E7A8370A305DBEB70009E277 /* Script.js in Resources */ = {isa = PBXBuildFile; fileRef = E7A83709305DBEB70009E277 /* Script.js */; };
-		E7A8370C305DBEB70009E277 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A8370B305DBEB70009E277 /* ViewController.swift */; };
-		E7A8370F305DBEB70009E277 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7A8370D305DBEB70009E277 /* Main.storyboard */; };
-		E7A83711305DBEB80009E277 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7A83710305DBEB80009E277 /* Assets.xcassets */; };
-		E7A83718305DBEB80009E277 /* Browser Dark Mode Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = E7A83717305DBEB80009E277 /* Browser Dark Mode Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		E7A8371D305DBEB80009E277 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A8371C305DBEB80009E277 /* SafariWebExtensionHandler.swift */; };
-		E7A83731305DBEB90009E277 /* popup in Resources */ = {isa = PBXBuildFile; fileRef = E7A83729305DBEB90009E277 /* popup */; };
-		E7A83732305DBEB90009E277 /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = E7A8372A305DBEB90009E277 /* background.js */; };
-		E7A83733305DBEB90009E277 /* detector.js in Resources */ = {isa = PBXBuildFile; fileRef = E7A8372B305DBEB90009E277 /* detector.js */; };
-		E7A83734305DBEB90009E277 /* icons in Resources */ = {isa = PBXBuildFile; fileRef = E7A8372C305DBEB90009E277 /* icons */; };
-		E7A83735305DBEB90009E277 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = E7A8372D305DBEB90009E277 /* manifest.json */; };
-		E7A83736305DBEB90009E277 /* lib in Resources */ = {isa = PBXBuildFile; fileRef = E7A8372E305DBEB90009E277 /* lib */; };
-		E7A83737305DBEB90009E277 /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = E7A8372F305DBEB90009E277 /* content.js */; };
-		E7A83738305DBEB90009E277 /* vendor in Resources */ = {isa = PBXBuildFile; fileRef = E7A83730305DBEB90009E277 /* vendor */; };
+		E7D8A0DE3060385B00161F92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D8A0DD3060385B00161F92 /* AppDelegate.swift */; };
+		E7D8A0E23060385B00161F92 /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = E7D8A0E03060385B00161F92 /* Main.html */; };
+		E7D8A0E43060385B00161F92 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E7D8A0E33060385B00161F92 /* Icon.png */; };
+		E7D8A0E63060385B00161F92 /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = E7D8A0E53060385B00161F92 /* Style.css */; };
+		E7D8A0E83060385B00161F92 /* Script.js in Resources */ = {isa = PBXBuildFile; fileRef = E7D8A0E73060385B00161F92 /* Script.js */; };
+		E7D8A0EA3060385B00161F92 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D8A0E93060385B00161F92 /* ViewController.swift */; };
+		E7D8A0ED3060385B00161F92 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7D8A0EB3060385B00161F92 /* Main.storyboard */; };
+		E7D8A0EF3060385C00161F92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7D8A0EE3060385C00161F92 /* Assets.xcassets */; };
+		E7D8A0F63060385C00161F92 /* Browser Dark Mode Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = E7D8A0F53060385C00161F92 /* Browser Dark Mode Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E7D8A0FB3060385C00161F92 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D8A0FA3060385C00161F92 /* SafariWebExtensionHandler.swift */; };
+		E7D8A10F3060385C00161F92 /* popup in Resources */ = {isa = PBXBuildFile; fileRef = E7D8A1073060385C00161F92 /* popup */; };
+		E7D8A1103060385C00161F92 /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = E7D8A1083060385C00161F92 /* background.js */; };
+		E7D8A1113060385C00161F92 /* detector.js in Resources */ = {isa = PBXBuildFile; fileRef = E7D8A1093060385C00161F92 /* detector.js */; };
+		E7D8A1123060385C00161F92 /* icons in Resources */ = {isa = PBXBuildFile; fileRef = E7D8A10A3060385C00161F92 /* icons */; };
+		E7D8A1133060385C00161F92 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = E7D8A10B3060385C00161F92 /* manifest.json */; };
+		E7D8A1143060385C00161F92 /* lib in Resources */ = {isa = PBXBuildFile; fileRef = E7D8A10C3060385C00161F92 /* lib */; };
+		E7D8A1153060385C00161F92 /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = E7D8A10D3060385C00161F92 /* content.js */; };
+		E7D8A1163060385C00161F92 /* vendor in Resources */ = {isa = PBXBuildFile; fileRef = E7D8A10E3060385C00161F92 /* vendor */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		E7A83719305DBEB80009E277 /* PBXContainerItemProxy */ = {
+		E7D8A0F73060385C00161F92 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E7A836F4305DBEB70009E277 /* Project object */;
+			containerPortal = E7D8A0D23060385B00161F92 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = E7A83716305DBEB80009E277;
+			remoteGlobalIDString = E7D8A0F43060385C00161F92;
 			remoteInfo = "Browser Dark Mode Extension";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		E7A83724305DBEB80009E277 /* Embed Foundation Extensions */ = {
+		E7D8A1023060385C00161F92 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 13;
+			dstSubfolder = PlugIns;
 			files = (
-				E7A83718305DBEB80009E277 /* Browser Dark Mode Extension.appex in Embed Foundation Extensions */,
+				E7D8A0F63060385C00161F92 /* Browser Dark Mode Extension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		E7A836FC305DBEB70009E277 /* Browser Dark Mode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Browser Dark Mode.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E7A836FF305DBEB70009E277 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E7A83703305DBEB70009E277 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = Base.lproj/Main.html; sourceTree = "<group>"; };
-		E7A83705305DBEB70009E277 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		E7A83707305DBEB70009E277 /* Style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = Style.css; sourceTree = "<group>"; };
-		E7A83709305DBEB70009E277 /* Script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Script.js; sourceTree = "<group>"; };
-		E7A8370B305DBEB70009E277 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		E7A8370E305DBEB70009E277 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E7A83710305DBEB80009E277 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E7A83712305DBEB80009E277 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E7A83717305DBEB80009E277 /* Browser Dark Mode Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Browser Dark Mode Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E7A8371C305DBEB80009E277 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
-		E7A8371E305DBEB80009E277 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E7A83729305DBEB90009E277 /* popup */ = {isa = PBXFileReference; lastKnownFileType = folder; name = popup; path = ../../../extension/popup; sourceTree = "<group>"; };
-		E7A8372A305DBEB90009E277 /* background.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = background.js; path = ../../../extension/background.js; sourceTree = "<group>"; };
-		E7A8372B305DBEB90009E277 /* detector.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = detector.js; path = ../../../extension/detector.js; sourceTree = "<group>"; };
-		E7A8372C305DBEB90009E277 /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; name = icons; path = ../../../extension/icons; sourceTree = "<group>"; };
-		E7A8372D305DBEB90009E277 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = ../../../extension/manifest.json; sourceTree = "<group>"; };
-		E7A8372E305DBEB90009E277 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; name = lib; path = ../../../extension/lib; sourceTree = "<group>"; };
-		E7A8372F305DBEB90009E277 /* content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = content.js; path = ../../../extension/content.js; sourceTree = "<group>"; };
-		E7A83730305DBEB90009E277 /* vendor */ = {isa = PBXFileReference; lastKnownFileType = folder; name = vendor; path = ../../../extension/vendor; sourceTree = "<group>"; };
+		E7D8A0DA3060385B00161F92 /* Browser Dark Mode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Browser Dark Mode.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7D8A0DD3060385B00161F92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E7D8A0E13060385B00161F92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = Base.lproj/Main.html; sourceTree = "<group>"; };
+		E7D8A0E33060385B00161F92 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		E7D8A0E53060385B00161F92 /* Style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = Style.css; sourceTree = "<group>"; };
+		E7D8A0E73060385B00161F92 /* Script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Script.js; sourceTree = "<group>"; };
+		E7D8A0E93060385B00161F92 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E7D8A0EC3060385B00161F92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E7D8A0EE3060385C00161F92 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E7D8A0F03060385C00161F92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E7D8A0F53060385C00161F92 /* Browser Dark Mode Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Browser Dark Mode Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7D8A0FA3060385C00161F92 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
+		E7D8A0FC3060385C00161F92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E7D8A1073060385C00161F92 /* popup */ = {isa = PBXFileReference; lastKnownFileType = folder; name = popup; path = ../../../extension/popup; sourceTree = "<group>"; };
+		E7D8A1083060385C00161F92 /* background.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = background.js; path = ../../../extension/background.js; sourceTree = "<group>"; };
+		E7D8A1093060385C00161F92 /* detector.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = detector.js; path = ../../../extension/detector.js; sourceTree = "<group>"; };
+		E7D8A10A3060385C00161F92 /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; name = icons; path = ../../../extension/icons; sourceTree = "<group>"; };
+		E7D8A10B3060385C00161F92 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = ../../../extension/manifest.json; sourceTree = "<group>"; };
+		E7D8A10C3060385C00161F92 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; name = lib; path = ../../../extension/lib; sourceTree = "<group>"; };
+		E7D8A10D3060385C00161F92 /* content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = content.js; path = ../../../extension/content.js; sourceTree = "<group>"; };
+		E7D8A10E3060385C00161F92 /* vendor */ = {isa = PBXFileReference; lastKnownFileType = folder; name = vendor; path = ../../../extension/vendor; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		E7A836F9305DBEB70009E277 /* Frameworks */ = {
+		E7D8A0D73060385B00161F92 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E7A83714305DBEB80009E277 /* Frameworks */ = {
+		E7D8A0F23060385C00161F92 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E7A836F3305DBEB70009E277 = {
+		E7D8A0D13060385B00161F92 = {
 			isa = PBXGroup;
 			children = (
-				E7A836FE305DBEB70009E277 /* Browser Dark Mode */,
-				E7A8371B305DBEB80009E277 /* Browser Dark Mode Extension */,
-				E7A836FD305DBEB70009E277 /* Products */,
+				E7D8A0DC3060385B00161F92 /* Browser Dark Mode */,
+				E7D8A0F93060385C00161F92 /* Browser Dark Mode Extension */,
+				E7D8A0DB3060385B00161F92 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		E7A836FD305DBEB70009E277 /* Products */ = {
+		E7D8A0DB3060385B00161F92 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E7A836FC305DBEB70009E277 /* Browser Dark Mode.app */,
-				E7A83717305DBEB80009E277 /* Browser Dark Mode Extension.appex */,
+				E7D8A0DA3060385B00161F92 /* Browser Dark Mode.app */,
+				E7D8A0F53060385C00161F92 /* Browser Dark Mode Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E7A836FE305DBEB70009E277 /* Browser Dark Mode */ = {
+		E7D8A0DC3060385B00161F92 /* Browser Dark Mode */ = {
 			isa = PBXGroup;
 			children = (
-				E7A836FF305DBEB70009E277 /* AppDelegate.swift */,
-				E7A8370B305DBEB70009E277 /* ViewController.swift */,
-				E7A8370D305DBEB70009E277 /* Main.storyboard */,
-				E7A83710305DBEB80009E277 /* Assets.xcassets */,
-				E7A83712305DBEB80009E277 /* Info.plist */,
-				E7A83701305DBEB70009E277 /* Resources */,
+				E7D8A0DD3060385B00161F92 /* AppDelegate.swift */,
+				E7D8A0E93060385B00161F92 /* ViewController.swift */,
+				E7D8A0EB3060385B00161F92 /* Main.storyboard */,
+				E7D8A0EE3060385C00161F92 /* Assets.xcassets */,
+				E7D8A0F03060385C00161F92 /* Info.plist */,
+				E7D8A0DF3060385B00161F92 /* Resources */,
 			);
 			path = "Browser Dark Mode";
 			sourceTree = "<group>";
 		};
-		E7A83701305DBEB70009E277 /* Resources */ = {
+		E7D8A0DF3060385B00161F92 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				E7A83702305DBEB70009E277 /* Main.html */,
-				E7A83705305DBEB70009E277 /* Icon.png */,
-				E7A83707305DBEB70009E277 /* Style.css */,
-				E7A83709305DBEB70009E277 /* Script.js */,
+				E7D8A0E03060385B00161F92 /* Main.html */,
+				E7D8A0E33060385B00161F92 /* Icon.png */,
+				E7D8A0E53060385B00161F92 /* Style.css */,
+				E7D8A0E73060385B00161F92 /* Script.js */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		E7A8371B305DBEB80009E277 /* Browser Dark Mode Extension */ = {
+		E7D8A0F93060385C00161F92 /* Browser Dark Mode Extension */ = {
 			isa = PBXGroup;
 			children = (
-				E7A83728305DBEB80009E277 /* Resources */,
-				E7A8371C305DBEB80009E277 /* SafariWebExtensionHandler.swift */,
-				E7A8371E305DBEB80009E277 /* Info.plist */,
+				E7D8A1063060385C00161F92 /* Resources */,
+				E7D8A0FA3060385C00161F92 /* SafariWebExtensionHandler.swift */,
+				E7D8A0FC3060385C00161F92 /* Info.plist */,
 			);
 			path = "Browser Dark Mode Extension";
 			sourceTree = "<group>";
 		};
-		E7A83728305DBEB80009E277 /* Resources */ = {
+		E7D8A1063060385C00161F92 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				E7A83729305DBEB90009E277 /* popup */,
-				E7A8372A305DBEB90009E277 /* background.js */,
-				E7A8372B305DBEB90009E277 /* detector.js */,
-				E7A8372C305DBEB90009E277 /* icons */,
-				E7A8372D305DBEB90009E277 /* manifest.json */,
-				E7A8372E305DBEB90009E277 /* lib */,
-				E7A8372F305DBEB90009E277 /* content.js */,
-				E7A83730305DBEB90009E277 /* vendor */,
+				E7D8A1073060385C00161F92 /* popup */,
+				E7D8A1083060385C00161F92 /* background.js */,
+				E7D8A1093060385C00161F92 /* detector.js */,
+				E7D8A10A3060385C00161F92 /* icons */,
+				E7D8A10B3060385C00161F92 /* manifest.json */,
+				E7D8A10C3060385C00161F92 /* lib */,
+				E7D8A10D3060385C00161F92 /* content.js */,
+				E7D8A10E3060385C00161F92 /* vendor */,
 			);
 			name = Resources;
 			path = "Browser Dark Mode Extension";
@@ -164,156 +158,142 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E7A836FB305DBEB70009E277 /* Browser Dark Mode */ = {
+		E7D8A0D93060385B00161F92 /* Browser Dark Mode */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E7A83725305DBEB80009E277 /* Build configuration list for PBXNativeTarget "Browser Dark Mode" */;
+			buildConfigurationList = E7D8A1033060385C00161F92 /* Build configuration list for PBXNativeTarget "Browser Dark Mode" */;
 			buildPhases = (
-				E7A836F8305DBEB70009E277 /* Sources */,
-				E7A836F9305DBEB70009E277 /* Frameworks */,
-				E7A836FA305DBEB70009E277 /* Resources */,
-				E7A83724305DBEB80009E277 /* Embed Foundation Extensions */,
+				E7D8A0D63060385B00161F92 /* Sources */,
+				E7D8A0D73060385B00161F92 /* Frameworks */,
+				E7D8A0D83060385B00161F92 /* Resources */,
+				E7D8A1023060385C00161F92 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				E7A8371A305DBEB80009E277 /* PBXTargetDependency */,
+				E7D8A0F83060385C00161F92 /* PBXTargetDependency */,
 			);
 			name = "Browser Dark Mode";
-			packageProductDependencies = (
-			);
 			productName = "Browser Dark Mode";
-			productReference = E7A836FC305DBEB70009E277 /* Browser Dark Mode.app */;
+			productReference = E7D8A0DA3060385B00161F92 /* Browser Dark Mode.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E7A83716305DBEB80009E277 /* Browser Dark Mode Extension */ = {
+		E7D8A0F43060385C00161F92 /* Browser Dark Mode Extension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E7A83721305DBEB80009E277 /* Build configuration list for PBXNativeTarget "Browser Dark Mode Extension" */;
+			buildConfigurationList = E7D8A0FF3060385C00161F92 /* Build configuration list for PBXNativeTarget "Browser Dark Mode Extension" */;
 			buildPhases = (
-				E7A83713305DBEB80009E277 /* Sources */,
-				E7A83714305DBEB80009E277 /* Frameworks */,
-				E7A83715305DBEB80009E277 /* Resources */,
+				E7D8A0F13060385C00161F92 /* Sources */,
+				E7D8A0F23060385C00161F92 /* Frameworks */,
+				E7D8A0F33060385C00161F92 /* Resources */,
 			);
 			buildRules = (
 			);
-			dependencies = (
-			);
 			name = "Browser Dark Mode Extension";
-			packageProductDependencies = (
-			);
 			productName = "Browser Dark Mode Extension";
-			productReference = E7A83717305DBEB80009E277 /* Browser Dark Mode Extension.appex */;
+			productReference = E7D8A0F53060385C00161F92 /* Browser Dark Mode Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		E7A836F4305DBEB70009E277 /* Project object */ = {
+		E7D8A0D23060385B00161F92 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2660;
-				LastUpgradeCheck = 2660;
+				LastSwiftUpdateCheck = 2700;
+				LastUpgradeCheck = 2700;
 				TargetAttributes = {
-					E7A836FB305DBEB70009E277 = {
-						CreatedOnToolsVersion = 26.6;
+					E7D8A0D93060385B00161F92 = {
+						CreatedOnToolsVersion = 27.0;
 					};
-					E7A83716305DBEB80009E277 = {
-						CreatedOnToolsVersion = 26.6;
+					E7D8A0F43060385C00161F92 = {
+						CreatedOnToolsVersion = 27.0;
 					};
 				};
 			};
-			buildConfigurationList = E7A836F7305DBEB70009E277 /* Build configuration list for PBXProject "Browser Dark Mode" */;
+			buildConfigurationList = E7D8A0D53060385B00161F92 /* Build configuration list for PBXProject "Browser Dark Mode" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = E7A836F3305DBEB70009E277;
+			mainGroup = E7D8A0D13060385B00161F92;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = E7A836FD305DBEB70009E277 /* Products */;
+			productRefGroup = E7D8A0DB3060385B00161F92 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E7A836FB305DBEB70009E277 /* Browser Dark Mode */,
-				E7A83716305DBEB80009E277 /* Browser Dark Mode Extension */,
+				E7D8A0D93060385B00161F92 /* Browser Dark Mode */,
+				E7D8A0F43060385C00161F92 /* Browser Dark Mode Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		E7A836FA305DBEB70009E277 /* Resources */ = {
+		E7D8A0D83060385B00161F92 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
-				E7A83706305DBEB70009E277 /* Icon.png in Resources */,
-				E7A8370F305DBEB70009E277 /* Main.storyboard in Resources */,
-				E7A8370A305DBEB70009E277 /* Script.js in Resources */,
-				E7A83704305DBEB70009E277 /* Main.html in Resources */,
-				E7A83711305DBEB80009E277 /* Assets.xcassets in Resources */,
-				E7A83708305DBEB70009E277 /* Style.css in Resources */,
+				E7D8A0E43060385B00161F92 /* Icon.png in Resources */,
+				E7D8A0ED3060385B00161F92 /* Main.storyboard in Resources */,
+				E7D8A0E83060385B00161F92 /* Script.js in Resources */,
+				E7D8A0E23060385B00161F92 /* Main.html in Resources */,
+				E7D8A0EF3060385C00161F92 /* Assets.xcassets in Resources */,
+				E7D8A0E63060385B00161F92 /* Style.css in Resources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E7A83715305DBEB80009E277 /* Resources */ = {
+		E7D8A0F33060385C00161F92 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
-				E7A83736305DBEB90009E277 /* lib in Resources */,
-				E7A83733305DBEB90009E277 /* detector.js in Resources */,
-				E7A83734305DBEB90009E277 /* icons in Resources */,
-				E7A83735305DBEB90009E277 /* manifest.json in Resources */,
-				E7A83738305DBEB90009E277 /* vendor in Resources */,
-				E7A83732305DBEB90009E277 /* background.js in Resources */,
-				E7A83737305DBEB90009E277 /* content.js in Resources */,
-				E7A83731305DBEB90009E277 /* popup in Resources */,
+				E7D8A1143060385C00161F92 /* lib in Resources */,
+				E7D8A1113060385C00161F92 /* detector.js in Resources */,
+				E7D8A1123060385C00161F92 /* icons in Resources */,
+				E7D8A1133060385C00161F92 /* manifest.json in Resources */,
+				E7D8A1163060385C00161F92 /* vendor in Resources */,
+				E7D8A1103060385C00161F92 /* background.js in Resources */,
+				E7D8A1153060385C00161F92 /* content.js in Resources */,
+				E7D8A10F3060385C00161F92 /* popup in Resources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		E7A836F8305DBEB70009E277 /* Sources */ = {
+		E7D8A0D63060385B00161F92 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
-				E7A8370C305DBEB70009E277 /* ViewController.swift in Sources */,
-				E7A83700305DBEB70009E277 /* AppDelegate.swift in Sources */,
+				E7D8A0EA3060385B00161F92 /* ViewController.swift in Sources */,
+				E7D8A0DE3060385B00161F92 /* AppDelegate.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E7A83713305DBEB80009E277 /* Sources */ = {
+		E7D8A0F13060385C00161F92 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
-				E7A8371D305DBEB80009E277 /* SafariWebExtensionHandler.swift in Sources */,
+				E7D8A0FB3060385C00161F92 /* SafariWebExtensionHandler.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		E7A8371A305DBEB80009E277 /* PBXTargetDependency */ = {
+		E7D8A0F83060385C00161F92 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E7A83716305DBEB80009E277 /* Browser Dark Mode Extension */;
-			targetProxy = E7A83719305DBEB80009E277 /* PBXContainerItemProxy */;
+			target = E7D8A0F43060385C00161F92 /* Browser Dark Mode Extension */;
+			targetProxy = E7D8A0F73060385C00161F92 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		E7A83702305DBEB70009E277 /* Main.html */ = {
+		E7D8A0E03060385B00161F92 /* Main.html */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E7A83703305DBEB70009E277 /* Base */,
+				E7D8A0E13060385B00161F92 /* Base */,
 			);
 			name = Main.html;
 			sourceTree = "<group>";
 		};
-		E7A8370D305DBEB70009E277 /* Main.storyboard */ = {
+		E7D8A0EB3060385B00161F92 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E7A8370E305DBEB70009E277 /* Base */,
+				E7D8A0EC3060385B00161F92 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -321,7 +301,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		E7A8371F305DBEB80009E277 /* Debug */ = {
+		E7D8A0FD3060385C00161F92 /* Debug configuration for PBXProject "Browser Dark Mode" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -384,7 +364,7 @@
 			};
 			name = Debug;
 		};
-		E7A83720305DBEB80009E277 /* Release */ = {
+		E7D8A0FE3060385C00161F92 /* Release configuration for PBXProject "Browser Dark Mode" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -439,7 +419,7 @@
 			};
 			name = Release;
 		};
-		E7A83722305DBEB80009E277 /* Debug */ = {
+		E7D8A1003060385C00161F92 /* Debug configuration for PBXNativeTarget "Browser Dark Mode Extension" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -473,7 +453,7 @@
 			};
 			name = Debug;
 		};
-		E7A83723305DBEB80009E277 /* Release */ = {
+		E7D8A1013060385C00161F92 /* Release configuration for PBXNativeTarget "Browser Dark Mode Extension" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -507,7 +487,7 @@
 			};
 			name = Release;
 		};
-		E7A83726305DBEB80009E277 /* Debug */ = {
+		E7D8A1043060385C00161F92 /* Debug configuration for PBXNativeTarget "Browser Dark Mode" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -525,6 +505,7 @@
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				INFOPLIST_KEY_NSViewGestureRecognizerIsExclusive = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -548,7 +529,7 @@
 			};
 			name = Debug;
 		};
-		E7A83727305DBEB80009E277 /* Release */ = {
+		E7D8A1053060385C00161F92 /* Release configuration for PBXNativeTarget "Browser Dark Mode" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -566,6 +547,7 @@
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				INFOPLIST_KEY_NSViewGestureRecognizerIsExclusive = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -592,34 +574,32 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E7A836F7305DBEB70009E277 /* Build configuration list for PBXProject "Browser Dark Mode" */ = {
+		E7D8A0D53060385B00161F92 /* Build configuration list for PBXProject "Browser Dark Mode" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E7A8371F305DBEB80009E277 /* Debug */,
-				E7A83720305DBEB80009E277 /* Release */,
+				E7D8A0FD3060385C00161F92 /* Debug configuration for PBXProject "Browser Dark Mode" */,
+				E7D8A0FE3060385C00161F92 /* Release configuration for PBXProject "Browser Dark Mode" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E7A83721305DBEB80009E277 /* Build configuration list for PBXNativeTarget "Browser Dark Mode Extension" */ = {
+		E7D8A0FF3060385C00161F92 /* Build configuration list for PBXNativeTarget "Browser Dark Mode Extension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E7A83722305DBEB80009E277 /* Debug */,
-				E7A83723305DBEB80009E277 /* Release */,
+				E7D8A1003060385C00161F92 /* Debug configuration for PBXNativeTarget "Browser Dark Mode Extension" */,
+				E7D8A1013060385C00161F92 /* Release configuration for PBXNativeTarget "Browser Dark Mode Extension" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E7A83725305DBEB80009E277 /* Build configuration list for PBXNativeTarget "Browser Dark Mode" */ = {
+		E7D8A1033060385C00161F92 /* Build configuration list for PBXNativeTarget "Browser Dark Mode" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E7A83726305DBEB80009E277 /* Debug */,
-				E7A83727305DBEB80009E277 /* Release */,
+				E7D8A1043060385C00161F92 /* Debug configuration for PBXNativeTarget "Browser Dark Mode" */,
+				E7D8A1053060385C00161F92 /* Release configuration for PBXNativeTarget "Browser Dark Mode" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = E7A836F4305DBEB70009E277 /* Project object */;
+	rootObject = E7D8A0D23060385B00161F92 /* Project object */;
+	validationLevel = 1;
 }

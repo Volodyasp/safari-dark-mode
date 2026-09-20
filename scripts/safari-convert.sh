@@ -29,3 +29,11 @@ grep -q 'PRODUCT_BUNDLE_IDENTIFIER = "com.vladimir.browser-dark-mode";' "$PBXPRO
 # Pin both to macOS 15.4 = Safari 18.4, the minimum this extension supports.
 sed -i '' 's/MACOSX_DEPLOYMENT_TARGET = [0-9.]*;/MACOSX_DEPLOYMENT_TARGET = 15.4;/' "$PBXPROJ"
 grep -q 'MACOSX_DEPLOYMENT_TARGET = 15.4;' "$PBXPROJ"
+
+# The converter upscales the 128 px extension icon for the app icon set;
+# replace with the exact sizes that scripts/icons.js renders.
+ICONSET="safari/Browser Dark Mode/Browser Dark Mode/Assets.xcassets/AppIcon.appiconset"
+for spec in 16@1x:16 16@2x:32 32@1x:32 32@2x:64 128@1x:128 128@2x:256 256@1x:256 256@2x:512 512@1x:512 512@2x:1024; do
+  cp "extension/icons/${spec#*:}.png" "$ICONSET/mac-icon-${spec%:*}.png"
+done
+cp extension/icons/128.png "safari/Browser Dark Mode/Browser Dark Mode/Resources/Icon.png"

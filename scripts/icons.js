@@ -1,13 +1,18 @@
-// Writes flat single-colour placeholder PNGs (16/32/48/128 px) for extension/icons/.
-// Dependency-free minimal PNG encoder: raw RGBA rows deflated with node:zlib.
+// Writes the extension icon (dark rounded square + crescent moon) as PNGs into
+// extension/icons/. 16/32/48/128 are referenced by the manifest; the larger
+// sizes feed the Safari app icon set (scripts/safari-convert.sh).
+// Dependency-free: pixels are rasterised here (4x4 supersampling for
+// anti-aliasing) and encoded with a minimal PNG writer on top of node:zlib.
 'use strict';
 
 const fs = require('node:fs');
 const path = require('node:path');
 const zlib = require('node:zlib');
 
-const SIZES = [16, 32, 48, 128];
-const COLOR = [0x18, 0x1a, 0x1b, 0xff]; // #181a1b, matches the dark-theme fallback background
+const SIZES = [16, 32, 48, 64, 128, 256, 512, 1024];
+const BG = [0x18, 0x1a, 0x1b]; // #181a1b, the dark-theme fallback background
+const MOON = [0xf3, 0xd6, 0x7a]; // warm moon on the dark tile
+const SS = 4; // supersampling factor per axis
 const destDir = path.join(__dirname, '..', 'extension', 'icons');
 
 const CRC_TABLE = (() => {
@@ -39,7 +44,47 @@ function chunk(type, data) {
   return Buffer.concat([lenBuf, typeBuf, data, crcBuf]);
 }
 
-function encodePng(size, [r, g, b, a]) {
+// Geometry in unit coordinates (0..1). Rounded square tile, then a crescent =
+// big circle minus a smaller circle shifted to the upper right.
+function insideTile(x, y) {
+  const r = 0.22;
+  const cx = Math.min(Math.max(x, r), 1 - r);
+  const cy = Math.min(Math.max(y, r), 1 - r);
+  return (x - cx) ** 2 + (y - cy) ** 2 <= r * r;
+}
+
+function insideMoon(x, y) {
+  const inOuter = (x - 0.46) ** 2 + (y - 0.52) ** 2 <= 0.30 ** 2;
+  const inCut = (x - 0.60) ** 2 + (y - 0.40) ** 2 <= 0.27 ** 2;
+  return inOuter && !inCut;
+}
+
+// Returns RGBA for one pixel by averaging SS*SS sub-samples.
+function shade(px, py, size) {
+  let tile = 0;
+  let moon = 0;
+  for (let sy = 0; sy < SS; sy++) {
+    for (let sx = 0; sx < SS; sx++) {
+      const x = (px + (sx + 0.5) / SS) / size;
+      const y = (py + (sy + 0.5) / SS) / size;
+      if (insideTile(x, y)) {
+        tile++;
+        if (insideMoon(x, y)) moon++;
+      }
+    }
+  }
+  const total = SS * SS;
+  if (tile === 0) return [0, 0, 0, 0];
+  const m = moon / tile; // moon share of the covered area
+  return [
+    Math.round(BG[0] + (MOON[0] - BG[0]) * m),
+    Math.round(BG[1] + (MOON[1] - BG[1]) * m),
+    Math.round(BG[2] + (MOON[2] - BG[2]) * m),
+    Math.round((255 * tile) / total),
+  ];
+}
+
+function encodePng(size) {
   const signature = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
 
   const ihdrData = Buffer.alloc(13);
@@ -58,6 +103,7 @@ function encodePng(size, [r, g, b, a]) {
     const rowStart = y * rowLength;
     raw[rowStart] = 0; // filter: none
     for (let x = 0; x < size; x++) {
+      const [r, g, b, a] = shade(x, y, size);
       const px = rowStart + 1 + x * 4;
       raw[px] = r;
       raw[px + 1] = g;
@@ -75,7 +121,7 @@ function encodePng(size, [r, g, b, a]) {
 fs.mkdirSync(destDir, { recursive: true });
 
 for (const size of SIZES) {
-  const png = encodePng(size, COLOR);
+  const png = encodePng(size);
   fs.writeFileSync(path.join(destDir, `${size}.png`), png);
 }
 
